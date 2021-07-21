@@ -1,0 +1,198 @@
+* {
+
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+
+}
+
+
+/* TOUTE LES PAGES */
+
+
+h1 a {
+
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+
+}
+
+h1 a:hover {
+
+    color: #fff;
+
+}
+
+.container h2 {
+
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    
+}
+
+img {
+
+    display: flex;
+    justify-content: center;
+    width: 70%;
+    margin: 0 auto;
+
+}
+
+
+nav {
+
+    background-color: rgb(47, 81, 97);
+    color: #fff;
+    padding: 30px 60px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+nav ul {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 10px;
+
+}
+
+nav li {
+
+    list-style: none;
+
+}
+
+nav li a {
+
+
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 8px;
+}
+
+
+nav li a:hover {
+
+    color: rgb(250, 164, 149);
+    text-decoration: none;
+    transition: 0.2s ease-in-out;
+
+}
+
+
+form {
+
+    padding-top: 0px;
+    margin: auto;
+    width: 500px;
+
+}
+
+
+
+/* REGISTER */
+
+.container .register {
+
+    margin-top: 60px;
+
+}
+
+
+/* LOGIN */
+
+.container .login {
+
+    margin-top: 60px;
+
+}
+
+
+
+
+
+/* PROFILE */
+
+.container .card {
+
+    margin: 0 auto;
+    margin-top: 120px;
+    padding: 0 0 20px 0;
+
+}
+
+
+.card {
+
+    text-align: center;
+    width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow:  0 10px 20px rgba(0, 0, 0, 0), 0 6px 36px rgba(0, 0, 0, 0.13);
+    background-color: #fff;
+
+}
+
+
+form {
+
+    margin: 10px auto;
+    
+}
+
+
+input {
+
+    margin-right: 80px;
+
+}
+
+.card form .btn {
+
+    border: none;
+    padding: 9px 32px;
+    font-style: 16px;
+    margin: 20px 100px 0 0;
+    border-radius: 3px;
+    
+}
+
+
+.card .btn {
+
+    margin: 0 auto;
+    padding: 9px 32px;
+
+}
+
+
+.card_image {
+
+    display: block;
+    margin: 0 auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
+    box-shadow:  0 10px 20px rgba(0, 0, 0, 0), 0 6px 36px rgba(0, 0, 0, 0.13);
+    border: 3px solid #fff;
+    margin-top: 10px;
+
+}
+
+
+.card_title {
+
+    margin-top: 20px;
+
+}
+
+
