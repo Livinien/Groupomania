@@ -1,6 +1,6 @@
 const http = require('http');
 const app = require('./app');
-
+const db = require("./models");
 
 // POUR SE CONNECTER AU SERVEUR //
 
@@ -67,5 +67,11 @@ server.on('listening', () => {
     console.log('Listening on' + bind);
 
 });
+
+
+
+db.sequelize.sync({  });
+// db.sequelize.sync({ alter: true });
+
 
 server.listen(port);
