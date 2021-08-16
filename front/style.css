@@ -121,7 +121,8 @@ form {
 
 
 
-/* SEARCH */
+
+/* POST - BOX SEARCH */
 
 .searchBox {
 
@@ -222,6 +223,27 @@ form {
     max-width: 80%;
     text-align: center;
 
+}
+
+
+
+
+/* POST */
+
+
+.list{
+
+    display: flex;
+    justify-content: center;
+    margin: 50px auto;
+    padding: 20px;
+    
+}
+
+.card {
+
+    margin: 20px auto;
+    
 }
 
 

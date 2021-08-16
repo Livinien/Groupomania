@@ -39,8 +39,8 @@
 
       <h2 class="titlePost">Partager Vos Aventures</h2>
 
-
-      <form class="flexform" id="postForm">
+      <td>
+      <form onsubmit="event.preventDefault(); onFormSubmit();" autocomplete="off" class="flexform" id="postForm">
 
         <input type="text" class="titre" id="title" placeholder="Titre de votre post...">
         <textarea class="champs" id="content" placeholder="Ecrivez vos exploits" cols="40" rows="2"></textarea>
@@ -50,7 +50,11 @@
           <label tabindex="0" for="my-file" class="input-file-trigger">Ajoute un fichier</label>
         </div>
 
-        <button class="boutton" type="submit">Publier</button>
+        <div class="form-action-buttons">
+          <button class="boutton" type="submit">Publier</button>
+        </div>
+
+        
       
       </form>
 
@@ -58,14 +62,19 @@
 
 
    
+    <table class="list" id="post">
+
+
+      <tbody>
+
+      </tbody>
+
+    </td>
+
+    </table>
+
+
     
-
-
-    <section id="post">
-
-      
-
-    </section> 
 
 
 
