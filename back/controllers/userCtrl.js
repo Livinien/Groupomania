@@ -4,15 +4,26 @@ const bcrypt = require("bcrypt");
 const jwt = require("../middleware/jwt");
 
 
-
+// S'INSCRIRE //
 
 exports.signup = async (req, res) => {
 
     try {
 
-        const pseudo = req.body.pseudo;
+        const firstname = req.body.firstname;
+        const lastname = req.body.lastname;
+        const email = req.body.email;
         let password = req.body.password;
-        let user = await db.User.findOne({where: { pseudo } });
+        let user = await db.User.findOne({ where: { 
+            
+            firstname, 
+            lastname, 
+            email 
+        }   
+        
+    });
+
+
         if(user) {
 
             return res.status(400).json({ error: "Utilisateur déjà Existant" });
@@ -25,7 +36,9 @@ exports.signup = async (req, res) => {
 
         user = await db.User.create({
 
-            pseudo, 
+            firstname,
+            lastname,
+            email, 
             password,
 
         });
@@ -42,15 +55,25 @@ exports.signup = async (req, res) => {
 
 
 
-
+    // SE CONNECTER //
 
 exports.login = async (req,res) => {
 
     try {
 
-        const pseudo = req.body.pseudo;
+        const email = req.body.email;
         const password = req.body.password;
-        let User = await db.User.findOne({ where:{ pseudo } });
+        let User = await db.User.findOne({ 
+            
+            where:{ 
+
+            email 
+        
+        } 
+
+    });
+
+
         if(!User) {
 
             return res.status(400).json( { error: "Utilisateur Inexistant"});

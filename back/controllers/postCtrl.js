@@ -27,6 +27,7 @@ exports.createPost = async (req, res) => {
             return res.status(400).json({ error: "Titre déjà Existant"});
 
         }
+        
         Post = await db.Post.create({
 
             title,
@@ -88,8 +89,10 @@ exports.getAllPost = async (req, res) => {
 
     try {
 
-        const Post = await db.Post.getAllPost({ 
-        include: [{ model: db.User, attributes: ["pseudo"] }],
+        const Post = await db.Post.findAll({ 
+        include: [{ 
+            model: db.User, 
+            attributes: ["firstname"] }],
         order: [["createdAt", "DESC"]]
         })
 
@@ -115,7 +118,7 @@ exports.getAllPost = async (req, res) => {
 exports.modifyPost = async (req, res) => {
 
     try {
-
+        const UserId = await jwt.getUserId(req);
         const PostId = req.params.id;
 
         if(!req.body) {
@@ -125,7 +128,10 @@ exports.modifyPost = async (req, res) => {
 
         db.Post.findOne({ 
 
-            where: { id: PostId }, 
+            where: { 
+                id: PostId, 
+                UserId: UserId 
+            }, 
         
         })
 
@@ -133,11 +139,14 @@ exports.modifyPost = async (req, res) => {
 
             if(!Post) {
 
-                return res.status(400).json({ error: "La publication n'est pas là" });
+                return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou que le post n'existe pas" });
 
             } else {
 
-                return Post.update({ content: req.body.content, title: req.body.title })
+                return Post.update({ 
+                    content: req.body.content, 
+                    title: req.body.title 
+                })
             }
 
         })
@@ -165,7 +174,7 @@ exports.modifyPost = async (req, res) => {
 exports.deletePost = async (req, res) => {
 
     try {
-
+        const UserId = await jwt.getUserId(req);
         const PostId = req.params.id;
 
         if(!req.body) {
@@ -178,7 +187,10 @@ exports.deletePost = async (req, res) => {
 
         db.Post.findOne({ 
 
-            where: { id: PostId }, 
+            where: { 
+                id: PostId, 
+                UserId: UserId 
+            }, 
         
         })
 
@@ -188,7 +200,7 @@ exports.deletePost = async (req, res) => {
 
             if(!Post) {
 
-                return res.status(400).json({ error: "La publication n'est pas là" });
+                return res.status(403).json({ error: "La publication n'est pas là ou vous n'avez pas l'authorisation" });
 
             } else {
 

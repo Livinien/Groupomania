@@ -52,10 +52,15 @@ exports.getUserId = (req) => {
     const token = req.headers.authorization.split(" ")[1];
     const decodedToken = jwt.verify(token, JWT_SIGN_SECRET);
     const userId = decodedToken.userId;
+    
 
     return userId;
 
 }
+
+
+
+
 
 
 

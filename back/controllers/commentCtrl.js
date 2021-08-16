@@ -38,36 +38,7 @@ exports.createComment = async (req, res) => {
 }
 
 
-// AFFICHER UN SEUL COMMENTAIRE EN FONCTION DE L'ID DE L'UTILISATEUR //
 
-exports.getOneComment = async (req, res) => {
-
-    try {
-
-      const CommentOne = req.params.id;
-      const Comment = await db.Comment.findOne({
-
-        where: { id: CommentOne },
-        include: [db.User],
-
-      });
-
-      if(!Comment) {
-
-        return res.status(400).json({ error: "Le Commentaire est Inexistant"});
-
-      }
-
-
-      return res.status(201).json({ Comment });
-
-    } catch (error) {
-
-        return res.status(500).json({ message: error.message });
-        
-    }
-
-};
 
 
 
@@ -77,22 +48,25 @@ exports.getAllComment = async (req, res) => {
 
     try {
 
-        const Comment = await db.Comment.getAllComment({
+        let PostId = req.params.id
+        const Comment = await db.Comment.findAll({
 
-            include: [{ model: db.User, attributes: ['pseudo'] }],
-            order: [["createAt", "DESC"]]
-
-        })
-
+            where : { 
+                PostId: PostId },
+                include: [{ 
+                    model: db.User, 
+                    attributes: ['firstname'] }],
+                order: [["createdAt", "DESC"]]
+            
+        }) 
+        
         if(!Comment) {
 
             return res.status(400).json({ error: "Aucun Commentaire" });
 
         }
 
-
         return res.status(201).json(({ Comment }));
-
 
     } catch (error) {
 
@@ -110,26 +84,31 @@ exports.modifyComment = async (req, res) => {
 
     try {
 
+        const UserId = await jwt.getUserId(req);
         const modifyComment = req.params.id;
         
         if(!req.body) {
 
             return res.status(400).json({ error: "Ce commentaire ne peut pas être modifié" });
 
-        }
+        } 
 
-        db.Comment.findOne({
+        
+            db.Comment.findOne({
 
-            where: { id: modifyComment },
-
-        })
+                where: { 
+                    id: modifyComment, 
+                    UserId: UserId 
+                },
+    
+            })
 
 
         .then((Comment) => {
 
             if(!Comment) {
 
-                return res.status(400).json({ error: "Le commentaire ne peut pas s'afficher" });
+                return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le commentaire n'existe pas" });
 
             } else {
 
@@ -164,7 +143,7 @@ exports.modifyComment = async (req, res) => {
 exports.deleteComment = async (req, res) => {
 
     try {
-
+        const UserId = await jwt.getUserId(req);
         const deleteComment = req.params.id;
 
         if(!req.body) {
@@ -176,15 +155,16 @@ exports.deleteComment = async (req, res) => {
 
         db.Comment.findOne({
 
-            where: { id: deleteComment },
+            where: { id: deleteComment, UserId: UserId },
 
         })
+
 
         .then((deleteComment) => {
 
             if(!deleteComment) {
 
-                return res.status(400).json({ error: "Le commentainre ne peut pas être supprimé"})
+                return res.status(403).json({ error: "Vous n'avez pas l'authorisation"})
 
             } else {
 

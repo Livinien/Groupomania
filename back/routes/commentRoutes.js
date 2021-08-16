@@ -8,6 +8,7 @@ const auth = require("../middleware/jwt").auth;
 router.post("/", auth, commentCtrl.createComment);
 router.put("/:id", auth, commentCtrl.modifyComment);
 router.delete("/:id", auth, commentCtrl.deleteComment);
+router.get("/:id", auth, commentCtrl.getAllComment);
 
 
 
