@@ -140,8 +140,16 @@ form {
 }
 
 
+table {
+
+    display: flex;
+    justify-content: center;
+
+}
+
 .flexform {
 
+    
     padding: 50px 0 0 0;
     margin-top: 50px;
     box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.3);
@@ -231,12 +239,14 @@ form {
 /* POST */
 
 
-.list{
+.list {
 
     display: flex;
     justify-content: center;
-    margin: 50px auto;
+    margin: 80px 70px 0 0 ;
+    margin-left: 50px;
     padding: 20px;
+    
     
 }
 
@@ -245,6 +255,7 @@ form {
     margin: 20px auto;
     
 }
+
 
 
 

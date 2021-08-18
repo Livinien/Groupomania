@@ -32,50 +32,47 @@
 
 
 
-    
 
-
-    <div class="searchBox">
+  <div class="searchBox">
 
       <h2 class="titlePost">Partager Vos Aventures</h2>
-
-      <td>
-      <form onsubmit="event.preventDefault(); onFormSubmit();" autocomplete="off" class="flexform" id="postForm">
-
-        <input type="text" class="titre" id="title" placeholder="Titre de votre post...">
-        <textarea class="champs" id="content" placeholder="Ecrivez vos exploits" cols="40" rows="2"></textarea>
-
-        <div class="input-file-container">  
-          <input class="input-file" id="my-file" type="file">
-          <label tabindex="0" for="my-file" class="input-file-trigger">Ajoute un fichier</label>
-        </div>
-
-        <div class="form-action-buttons">
-          <button class="boutton" type="submit">Publier</button>
-        </div>
-
-        
-      
-      </form>
-
-    </div> 
-
-
    
-    <table class="list" id="post">
+      <table>
+        <tr>
+          <td>
+            <form onsubmit="event.preventDefault(); onFormSubmit();" autocomplete="off" class="flexform" id="postForm">
 
-
-      <tbody>
-
-      </tbody>
-
-    </td>
-
-    </table>
-
-
+            <div>
+              <label class="validation-error hide" id="titleValidationError">Ce champs doit être complété</label>
+              <input type="text" class="titre" id="title" placeholder="Titre de votre post...">
+              <textarea class="champs" id="content" placeholder="Ecrivez vos exploits" cols="40" rows="2"></textarea>
+            </div>
     
+              <div class="input-file-container">  
+                <input class="input-file" id="my-file" type="file">
+                <label tabindex="0" for="my-file" class="input-file-trigger">Ajoute un fichier</label>
+              </div>
+    
+              <div class="form-action-buttons">
+                <button class="boutton" type="submit">Publier</button>
+              </div>
+              
+             </form>
+          </td>
+        </tr>
+      </table>
 
+      <table class="list" id="post">
+        <thead>
+            <tr>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+  </div>
 
 
     <script src="/front/fetch.js"></script>

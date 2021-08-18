@@ -127,75 +127,94 @@
 var selectedRow = null
 
 function onFormSubmit() {
-
-    var formData = readFormData();
-    if(selectedRow == null)
-    insertNewRecord(formData);
-    else
-    updateRecord(formData);
-    resetForm();
+    if (validate()) {
+        var formData = readFormData();
+        if (selectedRow == null)
+            insertNewRecord(formData);
+        else
+            updateRecord(formData);
+        resetForm();
+    }
 }
 
-
 function readFormData() {
-
     var formData = {};
     formData["title"] = document.getElementById("title").value;
     formData["content"] = document.getElementById("content").value;
-
     return formData;
-
 }
 
-
 function insertNewRecord(data) {
-
-    var newArticle = document.getElementById("post").getElementsByTagName("tbody")[0];
-
-    var newRow = newArticle.insertRow(newArticle.length);
-
+    var table = document.getElementById("post").getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow(table.length);
     cell1 = newRow.insertCell(0);
+    cell1.innerHTML = data.title;
     cell2 = newRow.insertCell(1);
-    cell2 = newRow.insertCell(2);
-    cell2.innerHTML = `<div class="card"">
-    <div class="card-body">
-      <h2 class="card-title">${data.title}</h2>
-      <p class="card-text">${data.content}</p>
-      <button onClick="onEdit(this)" type="button" class="btn btn-primary">Modifier</button>
-      <button onClick="onDelete(this)" type="button" class="btn btn-danger">Supprimer</button>
-    </div>
-  </div>`;
-
+    cell2.innerHTML = data.content;
+    cell3 = newRow.insertCell(2);
+    cell3.innerHTML = `
+    
+    
+        <h2 class="card-title">${data.title}</h2>
+        <p class="card-text">${data.content}</p>
+        <button onClick="onEdit(this)" type="button" class="btn btn-primary">Modifier</button>
+        <button onClick="onDelete(this)" type="button" class="btn btn-danger">Supprimer</button>
+    
+        
+    `;
+    
 }
 
 function resetForm() {
-
-    document.getElementsById("title").value = "";
-    document.getElementsById("content").value = "";
+    document.getElementById("title").value = "";
+    document.getElementById("content").value = "";
+    
     selectedRow = null;
 }
 
 function onEdit(td) {
-
     selectedRow = td.parentElement.parentElement;
     document.getElementById("title").value = selectedRow.cells[0].innerHTML;
     document.getElementById("content").value = selectedRow.cells[1].innerHTML;
-
+    
 }
+
 
 function updateRecord(formData) {
-
     selectedRow.cells[0].innerHTML = formData.title;
     selectedRow.cells[1].innerHTML = formData.content;
-
+    
 }
-
 
 function onDelete(td) {
-
-    if(confirm('Êtes vous sur de vouloir supprimer ce post ?'))
-    row = td.parentElement.parentElement;
-    document.getElementById("post").deleteRow(row.rowIndex);
-    resetForm();
-
+    if (confirm('Êtes-vous sur de vouloir supprimer le post ?')) {
+        row = td.parentElement.parentElement;
+        document.getElementById("post").deleteRow(row.rowIndex);
+        resetForm();
+    }
 }
+
+function validate() {
+    isValid = true;
+    if (document.getElementById("title").value == "") {
+        isValid = false;
+        document.getElementById("titleValidationError").classList.remove("hide");
+    } else {
+        isValid = true;
+        if (!document.getElementById("titleValidationError").classList.contains("hide"))
+            document.getElementById("titleValidationError").classList.add("hide");
+    }
+    return isValid;
+}
+
+
+
+
+// `<div class="card"">
+//         <div class="card-body">
+//         <h2 class="card-title">${data.title}</h2>
+//         <p class="card-text">${data.content}</p>
+//         <button onClick="onEdit(this)" type="button" class="btn btn-primary">Modifier</button>
+//         <button onClick="onDelete(this)" type="button" class="btn btn-danger">Supprimer</button>
+//         </div>
+//     </div>`;
