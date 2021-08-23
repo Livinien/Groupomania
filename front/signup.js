@@ -176,14 +176,22 @@ signupForm.addEventListener("submit", async (e) => {
 
     if(isValidFirstname && isValidLastname && isValidEmail && isValidPassword && isValidConfirmPassword && matchPassword) {
 
-        const json = signup(user)
+        const json = await signup(user)
+
+        if(json.token) {
+
+            localStorage.setItem("token", json.token)
+            window.location.href = "post.html";
+
+        } else {
+
+            alert(json.error)
+
+        }
+        
         console.log(json);
 
-        window.location.href = "post.html";
-
     }
-
-
 
 });
 

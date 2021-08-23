@@ -20,30 +20,31 @@
     
     <nav>
 
-        <h1><a href="index.html">Groupomania</a></h1>
-  
-        <ul>
-            <li><a href="index.html">Accueil</a></li>
-            <li><a href="profile.html">Profile</a></li>
-            <li><a href="lougout.html">Déconnexion</a></li>
-        </ul>
-        
+      <h1><a href="index.html">Groupomania</a></h1>
+
+
+      <ul>
+          <li><a href="index.html" class="home">Accueil</a></li>
+          <li><a href="profile.html" class="logged">Profile</a></li>
+          <li><a href="" id="logout" class="logged">Déconnexion</a></li>
+      </ul>
+
     </nav>
 
 
 
 
-  <div class="searchBox">
+  <!-- <div class="searchBox">
 
       <h2 class="titlePost">Partager Vos Aventures</h2>
    
       <table>
         <tr>
           <td>
-            <form onsubmit="event.preventDefault(); onFormSubmit();" autocomplete="off" class="flexform" id="postForm">
+
+            <form id="myForm" class="flexform" onsubmit="event.preventDefault(); onFormSubmit();" autocomplete="off" >
 
             <div>
-              <label class="validation-error hide" id="titleValidationError">Ce champs doit être complété</label>
               <input type="text" class="titre" id="title" placeholder="Titre de votre post...">
               <textarea class="champs" id="content" placeholder="Ecrivez vos exploits" cols="40" rows="2"></textarea>
             </div>
@@ -72,7 +73,22 @@
 
         </tbody>
     </table>
-  </div>
+  </div> -->
+
+
+  <form id="myForm">
+
+    <label for="title"></label>
+    <input id="title" type="text">
+    <label for="content">Contenu</label>
+    <textarea name="" id="content" cols="30" rows="10"></textarea>
+
+    <button type="submit">Publier</button>
+
+  </form>
+
+  <div id="displayPost"></div>
+
 
 
     <script src="/front/fetch.js"></script>

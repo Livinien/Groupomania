@@ -4,6 +4,8 @@
 
 // CODE 1 //
 
+
+
 // let form = document.getElementById("form");
 
 
@@ -124,97 +126,160 @@
 
 // CODE 3 //
 
-var selectedRow = null
+// let selectedRow = null
 
-function onFormSubmit() {
-    if (validate()) {
-        var formData = readFormData();
-        if (selectedRow == null)
-            insertNewRecord(formData);
-        else
-            updateRecord(formData);
-        resetForm();
-    }
-}
-
-function readFormData() {
-    var formData = {};
-    formData["title"] = document.getElementById("title").value;
-    formData["content"] = document.getElementById("content").value;
-    return formData;
-}
-
-function insertNewRecord(data) {
-    var table = document.getElementById("post").getElementsByTagName('tbody')[0];
-    var newRow = table.insertRow(table.length);
-    cell1 = newRow.insertCell(0);
-    cell1.innerHTML = data.title;
-    cell2 = newRow.insertCell(1);
-    cell2.innerHTML = data.content;
-    cell3 = newRow.insertCell(2);
-    cell3.innerHTML = `
+// function onFormSubmit() {
     
+//     let formData = readFormData();
+//     if (selectedRow == null)
+//         insertNewRecord(formData);
+//     else
+//         updateRecord(formData);
+//     resetForm();
+// }
+
+
+// function readFormData() {
+//     let formData = {};
+//     formData["title"] = document.getElementById("title").value;
+//     formData["content"] = document.getElementById("content").value;
+//     return formData;
+// }
+
+// function insertNewRecord(data) {
+//     let table = document.getElementById("post").getElementsByTagName('tbody')[0];
+//     console.log(data);
+//     let newRow = table.insertRow(table.length);
+//     cell1 = newRow.insertCell(0);
     
-        <h2 class="card-title">${data.title}</h2>
-        <p class="card-text">${data.content}</p>
-        <button onClick="onEdit(this)" type="button" class="btn btn-primary">Modifier</button>
-        <button onClick="onDelete(this)" type="button" class="btn btn-danger">Supprimer</button>
-    
-        
-    `;
-    
-}
-
-function resetForm() {
-    document.getElementById("title").value = "";
-    document.getElementById("content").value = "";
-    
-    selectedRow = null;
-}
-
-function onEdit(td) {
-    selectedRow = td.parentElement.parentElement;
-    document.getElementById("title").value = selectedRow.cells[0].innerHTML;
-    document.getElementById("content").value = selectedRow.cells[1].innerHTML;
-    
-}
-
-
-function updateRecord(formData) {
-    selectedRow.cells[0].innerHTML = formData.title;
-    selectedRow.cells[1].innerHTML = formData.content;
-    
-}
-
-function onDelete(td) {
-    if (confirm('Êtes-vous sur de vouloir supprimer le post ?')) {
-        row = td.parentElement.parentElement;
-        document.getElementById("post").deleteRow(row.rowIndex);
-        resetForm();
-    }
-}
-
-function validate() {
-    isValid = true;
-    if (document.getElementById("title").value == "") {
-        isValid = false;
-        document.getElementById("titleValidationError").classList.remove("hide");
-    } else {
-        isValid = true;
-        if (!document.getElementById("titleValidationError").classList.contains("hide"))
-            document.getElementById("titleValidationError").classList.add("hide");
-    }
-    return isValid;
-}
-
-
-
-
-// `<div class="card"">
-//         <div class="card-body">
+//     cell2 = newRow.insertCell(1);
+//     cell2.innerHTML = data.content;
+//     cell3 = newRow.insertCell(2);
+//     cell3.innerHTML = `
+       
 //         <h2 class="card-title">${data.title}</h2>
-//         <p class="card-text">${data.content}</p>
-//         <button onClick="onEdit(this)" type="button" class="btn btn-primary">Modifier</button>
+//         <p class="card-text"></p>
+//         <br>
+//         <br>
+//         <button onClick="onEdit(this)" type="button" class="btn btn-primary">Modifier</button> &nbsp;&nbsp;
 //         <button onClick="onDelete(this)" type="button" class="btn btn-danger">Supprimer</button>
-//         </div>
-//     </div>`;
+        
+
+//         <style>
+            
+
+//         </style>
+        
+//     `;
+    
+// }
+
+// function resetForm() {
+//     document.getElementById("title").value = "";
+//     document.getElementById("content").value = "";
+    
+//     selectedRow = null;
+// }
+
+// function onEdit(td) {
+//     selectedRow = td.parentElement.parentElement;
+//     document.getElementById("title").value = selectedRow.cells[0].innerHTML;
+//     document.getElementById("content").value = selectedRow.cells[1].innerHTML;
+    
+// }
+
+
+// function updateRecord(formData) {
+//     selectedRow.cells[0].innerHTML = formData.title;
+//     selectedRow.cells[1].innerHTML = formData.content;
+    
+// }
+
+// function onDelete(td) {
+//     if (confirm('Êtes-vous sur de vouloir supprimer le post ?')) {
+//         row = td.parentElement.parentElement;
+//         document.getElementById("post").deleteRow(row.rowIndex);
+//         resetForm();
+//     }
+// }
+
+
+// SUPPRIMER LE TOKEN UNE FOIS DECONNECTER //
+
+const logout = document.getElementById("logout");
+
+logout.addEventListener("click", (e) => {
+
+    localStorage.removeItem("token")
+    window.location.href = "index.html";
+
+});
+
+
+
+const form = document.getElementById("myForm");
+
+form.addEventListener("submit", async (e) => {
+
+    e.preventDefault();
+
+    const title = document.getElementById("title").value;
+    const content = document.getElementById("content").value;
+    const postToSend = { title, content };
+    const post = await sendPost(postToSend);
+    
+   
+    
+});
+
+
+
+// CREER UN POST //
+
+function displayPost(post) {
+
+    const postHtml = `
+    
+        <h2>${post.title}</h2>
+        <p>${post.content}</p>
+        <button id="update${post.id}">Modifier</button>
+        <button id="delete${post.id}">Supprimer</button>
+        
+        `;
+
+    const displayPost = document.getElementById("displayPost");
+    displayPost.insertAdjacentHTML("beforeend", postHtml);
+
+
+}
+
+
+
+
+
+
+
+const token = localStorage.getItem("token");
+if(!token) {
+
+    window.location.href = "index.html"
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+          
+
+
+
+
+

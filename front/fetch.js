@@ -1,3 +1,5 @@
+
+
 const url = 'http://localhost:3001';
 
 
@@ -25,7 +27,7 @@ async function login(User) {
 
     const res = await fetch(url + "/api/user/login",
     {
-        methode: "POST",
+        method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(User)
 
@@ -43,36 +45,97 @@ async function login(User) {
 
 // METTRE EN LIGNE UN POST //
 
-async function postArticle() {
 
-const res = await fetch(url + "/api/post/article", 
+async function sendPost(post) {
 
-{
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(article)
+    let token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:3001/api/post", {
+
+        method: "POST",
+        headers: { 
+            
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+        
+        },
+        
+        body: JSON.stringify(post),
+
+        
+    });
+
+    
+
+    const json = await res.json();
+    return json.Post;
+    
+
+}
 
 
-});
 
-    const json = await res.json()
-    return json
+// TOUS LES POSTS //
 
+
+async function displayAllPost() {
+
+    let token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:3001/api/post", {
+
+        method: "GET",
+        headers: { 
+                
+            Authorization: "Bearer " + token,
+        
+        }
+
+    });
+    
+    const json = await res.json();
+    console.log(json);
 
 }
 
+displayAllPost()
 
 
-// RECUPERER UN POST //
 
-async function post() {
 
-    const res = await fetch(url + "/api/post/article",);
 
-    const json = await res.json()
-    return json
 
-}
+
+// async function postArticle() {
+
+// const res = await fetch(url + "/api/post/article", 
+
+// {
+//     method: "POST",
+//     headers: { "Content-Type": "application/json" },
+//     body: JSON.stringify(article)
+
+
+// });
+
+//     const json = await res.json()
+//     return json
+
+
+// }
+
+
+
+// // RECUPERER UN POST //
+
+// async function post() {
+
+//     const res = await fetch(url + "/api/post/article",);
+
+//     const json = await res.json()
+//     return json
+
+// }
 
 
 

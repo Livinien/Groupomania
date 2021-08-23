@@ -1,4 +1,5 @@
 
+
 const loginForm = document.getElementById("loginForm");
 
 
@@ -78,11 +79,19 @@ loginForm.addEventListener("submit", async (e) => {
 
     if(isValidEmail && isValidPassword) {
 
-        const json = login(user)
+        const json = await login(user)
+        if(json.token) {
+
+            localStorage.setItem("token", json.token)
+            window.location.href = "post.html";
+
+        } else {
+
+            alert(json.error)
+
+        }
+
         console.log(json);
-
-
-        window.location.href = "post.html";
 
     } 
     
