@@ -43,7 +43,10 @@ exports.signup = async (req, res) => {
 
         });
 
-        return res.status(201).json({ message: "Utilisateur crée"});
+        const token = jwt.generateToken(user);
+        return res.status(200).json({ token, message: "Utilisateur Créer" });
+
+        
 
     } catch (error) {
 

@@ -7,13 +7,14 @@ module.exports = (sequelize, DataType) => {
         title: {
             type: DataType.STRING,
             allowNull: false,
-            unique: true,
+            
         },
         
         content: {
 
             type: DataType.TEXT,
             allowNull: false,
+            
         },
 
         imageUrl: {

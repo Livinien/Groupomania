@@ -7,9 +7,9 @@ const jwt = require("../middleware/jwt");
 // CREATION DE POST //
 
 exports.createPost = async (req, res) => {
-
+    
     try {
-
+        
         const title = req.body.title;
         const content = req.body.content;
         const imageUrl = req.body.imageUrl;
@@ -32,7 +32,7 @@ exports.createPost = async (req, res) => {
 
             title,
             content,
-            imageUrl: imageUrl ? imageUrl : null, 
+            imageUrl, 
             UserId,
 
         });
@@ -93,7 +93,7 @@ exports.getAllPost = async (req, res) => {
         include: [{ 
             model: db.User, 
             attributes: ["firstname"] }],
-        order: [["createdAt", "DESC"]]
+            order: [["createdAt", "DESC"]]
         })
 
         if(!Post) {
