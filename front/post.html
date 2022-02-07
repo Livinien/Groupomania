@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <link rel="stylesheet" href="style.css">
 
@@ -34,65 +35,32 @@
 
 
 
-  <!-- <div class="searchBox">
-
-      <h2 class="titlePost">Partager Vos Aventures</h2>
-   
-      <table>
-        <tr>
-          <td>
-
-            <form id="myForm" class="flexform" onsubmit="event.preventDefault(); onFormSubmit();" autocomplete="off" >
-
-            <div>
-              <input type="text" class="titre" id="title" placeholder="Titre de votre post...">
-              <textarea class="champs" id="content" placeholder="Ecrivez vos exploits" cols="40" rows="2"></textarea>
-            </div>
-    
-              <div class="input-file-container">  
-                <input class="input-file" id="my-file" type="file">
-                <label tabindex="0" for="my-file" class="input-file-trigger">Ajoute un fichier</label>
-              </div>
-    
-              <div class="form-action-buttons">
-                <button class="boutton" type="submit">Publier</button>
-              </div>
-              
-             </form>
-          </td>
-        </tr>
-      </table>
-
-      <table class="list" id="post">
-        <thead>
-            <tr>
-                
-            </tr>
-        </thead>
-        <tbody>
-
-        </tbody>
-    </table>
-  </div> -->
-
-
   <form id="myForm">
 
     <label for="title"></label>
-    <input id="title" type="text">
-    <label for="content">Contenu</label>
-    <textarea name="" id="content" cols="30" rows="10"></textarea>
-
-    <button type="submit">Publier</button>
-
+    <label for="content" class="contenu">Titre de votre Post</label>
+    <input id="title" class="titre" type="text">
+    <textarea name="" id="content" class="titre" cols="30" rows="10"></textarea>
+    <input type="file" id="imageUrl" class="fileImg" name="imageUrl" accept="image/png, image/jpeg">
+    <div id="uploadedImage"></div>
+    <br>
+    <button class="bouton" type="submit">Publier</button>
+  
   </form>
 
-  <div id="displayPost"></div>
+
+
+  <br><br>
 
 
 
+  <div id="posts"></div>
+
+
+    <script src="/front/security/Authentification.js"></script>
     <script src="/front/fetch.js"></script>
     <script src="/front/post.js"></script>
+    
 
 </body>
 

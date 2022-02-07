@@ -83,6 +83,7 @@ loginForm.addEventListener("submit", async (e) => {
         if(json.token) {
 
             localStorage.setItem("token", json.token)
+            localStorage.setItem("userId", json.userId)
             window.location.href = "post.html";
 
         } else {
