@@ -96,6 +96,8 @@ form {
 
 
 
+
+
 /* SIGNUP */
 
 .container .signup {
@@ -122,39 +124,22 @@ form {
 
 
 
-/* POST - BOX SEARCH */
 
-.searchBox {
+/* FORMULAIRE DE CREATION DE POST */
+
+#myForm {
 
     margin: 50px auto;
-    width: 80%;
+    border-radius: 5px;
+    -webkit-box-shadow: 2px 5px 24px -1px #000000; 
+    box-shadow: 2px 5px 24px -5px #000000;
+   
 }
 
-
-.searchBox h2 {
-
-    display: flex;
-    justify-content: center;
-    font-weight: bold;
-
+.post {
+    position: relative;
 }
 
-
-table {
-
-    display: flex;
-    justify-content: center;
-
-}
-
-.flexform {
-
-    
-    padding: 50px 0 0 0;
-    margin-top: 50px;
-    box-shadow: 4px 8px 16px rgba(0, 0, 0, 0.3);
-    
-}
 
 .titre {
 
@@ -165,111 +150,346 @@ table {
 }
 
 
-.flexform textarea, .file, title {
+.contenu {
 
-    margin: 0px 80px;
-    outline: 0;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
 }
 
 
-.champs {
+.fileImg {
 
-    padding: 8px;
-
-}
-
-
-.flexform .boutton {
-
-    background-color: rgb(47, 81, 97);
-    color: #fff;
     padding: 10px 80px;
-    border: 0;
-    border-radius: 5px;
-    margin: 60px 190px 20px 130px;
-    font-size: 20px;
-    transition: all 0.2s;
-}
-
-
-.flexform .boutton:hover {
-
-    background-color: rgb(67, 101, 117);
 
 }
 
+.points {
 
-/* SELECT FILE */
-
-
-.input-file-container {
-    position: relative;
-    width: 185px;
-    margin-left: 80px;
-} 
-
-.input-file-trigger {
-    display: block;
-    padding: 10px 45px;
-    background: #23907b;
-    color: #fff;
-    font-size: 13px;
-    transition: all .4s;
-    
-}
-
-.input-file {
     position: absolute;
-    visibility: hidden;
+    top: 5px;
+    right: 20px;
+    font-weight: bold;
+    font-size: 30px;
+    letter-spacing: 3px;
+    padding: 0px 15px 10px 10px;
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.bouton {
     
-}
-
-
-.form {
-
-    margin: 50px auto;
-    max-width: 80%;
-    text-align: center;
-
-}
-
-
-
-
-/* */
-
-#myForm {
-
-    padding-top: 50px;
+    margin: 0px 160px 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    border: none;
+    background: #02274d;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
 
 }
 
-
-#displayPost {
-
-    padding: 20px;
-
+.bouton:hover {
+    background: #0381ff;
 }
+
+
+
+
 
 
 /* POST */
 
 
-.list {
+.post {
+    width: 500px;
+    padding: 20px;
+    margin: 0px 100px 30px;
+    -webkit-box-shadow: 2px 5px 24px -1px #000000; 
+    box-shadow: 2px 5px 24px -5px #000000;
+    border-radius: 5px;
+}
+
+.post h2, p, img, a {
 
     display: flex;
     justify-content: center;
-    margin: 80px 70px 0 0 ;
-    margin-left: 50px;
-    padding: 20px;
-    
+    padding: 10px;
+    text-decoration: none;
     
 }
 
-.card {
+.post button {
+    margin: 30px 160px 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    border: none;
+    background: #005dff;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
 
-    margin: 20px auto;
+button:hover {
+    background: #2c95ff;
+}
+
+
+
+
+textarea {
+    margin: 30px 40px 30px;
+    width: 80%; 
+}
+
+.post .coms {
+    position: relative;
+}
+
+
+
+
+
+/* MODIFIER POST */
+
+
+.windowModify {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background:rgb(255, 255, 255);
+    width: 100%;
+    height: 100%; 
+    opacity: 95%;
+}
+
+
+.modifyPost {
+    position: absolute;
+    box-shadow: 2px 5px 24px -5px rgba(0,0,0,0.51);
+    top: 66px;
+    right: 36px;
+    padding: 5px 12px 5px 12px;
+    font-weight: bold;
+    cursor: pointer;
     
+}
+
+
+.modifyPost:hover {
+    background: #005dff;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+
+/* FORMLAIRE */
+
+.registrationForm {
+    position: relative;
+}
+
+
+
+.postModify {
+    position: absolute;
+    top: 10px;
+    font-size: 26px;
+    font-weight: bold;
+    box-shadow: 5px 5px 24px 5px rgba(0,0,0,0.51);
+    background: rgb(70, 153, 248);
+    border-radius: 5px;
+    margin: 30px 30px 40px 80px;
+    color: #fff;
+}
+
+
+.cross {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+    font-size: 26px;
+    font-weight: bold;
+    box-shadow: 5px 5px 24px 5px rgba(0,0,0,0.51);
+    background: rgb(0, 0, 0);
+    border-radius: 50px;
+    margin: 30px 30px 40px 80px;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+.titleModify {
+    position: absolute;
+    top: 140px;
+    right: 25px;
+    margin: 30px 30px 40px 40px;
+    width: 80%;
+    box-shadow: 5px 5px 24px 5px rgba(0,0,0,0.51);
+    border-radius: 10px;
+    border: none;
+}
+
+
+.texteareaModify {
+    position: absolute;
+    top: 215px;
+    right: 16px;
+    box-shadow: 5px 5px 24px 5px rgba(0,0,0,0.51);
+    border: none;
+}
+
+.fileModify {
+    position: absolute;
+    top: 340px;
+    right: 120px;
+}
+
+
+.check {
+    position: absolute;
+    top: 400px;
+    right: 30px;
+    box-shadow: 5px 5px 24px 5px rgba(0,0,0,0.51);
+    background: #005dff;
+}
+
+.check:hover {
+    background: #2c95ff;
+}
+
+
+
+
+
+/* SUPPRIMER POST */
+
+.deletePost {
+    position: absolute;
+    top: 100px;
+    right: 36px;
+    padding: 5px;
+    box-shadow: 2px 5px 24px -5px rgba(0,0,0,0.51);
+    font-weight: bold;
+    cursor: pointer;
+
+}
+
+.deletePost:hover {
+
+    background: #ff001f;
+    color: #fff;
+    transition: 0.3s ease-in-out;
+}
+
+.windowDelete {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background:rgb(100, 100, 100);
+    width: 100%;
+    height: 100%; 
+    opacity: 90%;
+}
+
+.messageDelete {
+    position: absolute;
+    top: 150px;
+    right: 12px;
+    width: 95%;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+    color: #000;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 1000;
+}
+
+.titleSuppression {
+    text-align: center;
+}
+
+
+
+/*  BOUTON */
+
+.btnSuppression1 {
+    margin: 30px 137px 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    width: 150px;
+    border: none;
+    background: grey;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
+
+.btnSuppression1:hover { 
+    background: red;
+}
+
+.btnSuppression2 {
+    margin: 30px 136px 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    border: none;
+    background: grey;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+}
+
+.btnSuppression2:hover { 
+    background: #6ac1ff;
+}
+
+
+
+/* COMMENTAIRE */
+
+.commentaire {
+    display: flex; 
+    justify-content: center;
+    background-color: rgba(184, 184, 184, 0.787);
+    box-shadow: 2px 5px 24px -5px rgba(0, 0, 0, 0.883);
+    border-radius: 3px;
+    overflow: hidden;
+    hyphens: auto;
+    word-wrap: break-word;
+    padding: 0px 0px 20px 20px;
+}
+
+strong:nth-child(1) {
+    padding: 10px 0px 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+strong:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    
+}
+
+
+
+/* BOUTON LIKE */
+
+
+.like {
+
+    padding: 4px 4px;
+    border-radius: 5px;
+    border: none;
+    color: #e8efff;
+    cursor: pointer;
+    outline: none;
+    background: #0080ff;
+
 }
 
 
@@ -295,7 +515,7 @@ table {
     padding: 20px;
     border-radius: 5px;
     background-color: #fff;
-    box-shadow:  0 10px 20px rgba(0, 0, 0, 0), 0 6px 36px rgba(0, 0, 0, 0.13);
+    box-shadow: 2px 5px 24px -5px #000000;
     background-color: #fff;
 
 }
