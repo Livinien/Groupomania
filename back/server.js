@@ -2,6 +2,7 @@ const http = require('http');
 const app = require('./app');
 const db = require("./models");
 
+
 // POUR SE CONNECTER AU SERVEUR //
 
 const normalizePort = val => {
@@ -70,7 +71,7 @@ server.on('listening', () => {
 
 
 
-db.sequelize.sync({  });
+// db.sequelize.sync({ force: true });
 // db.sequelize.sync({ alter: true });
 
 

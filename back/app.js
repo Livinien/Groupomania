@@ -25,8 +25,8 @@ app.use((req, res, next) => {
 
 
 
-app.use(express.json());
-
+app.use(express.json({limit:"2mb"}));
+app.use(express.urlencoded({limit:"2mb"}));
 
 // LES ROUTES POUR ACCEDER A L'API //
 
@@ -37,6 +37,6 @@ app.use("/api/Comment", commentRoutes);
 
 
 
-app.use('/images', express.static(path.join(__dirname, 'images')));
+app.use('/img_posts', express.static(path.join(__dirname, 'img_posts')));
 
 module.exports = app;
