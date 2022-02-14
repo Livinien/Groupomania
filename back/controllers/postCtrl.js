@@ -1,76 +1,50 @@
 const db = require("../models");
 const jwt = require("../middleware/jwt");
+const fs = require('fs');
 
 
-// CRUD //
+
 
 // CREATION DE POST //
 
 exports.createPost = async (req, res) => {
-    
+    const post = JSON.parse(req.body.post);
+    post.imageUrl = req.file.filename;
+    post.UserId = await jwt.getUserId(req);
+
     try {
-        
-        const title = req.body.title;
-        const content = req.body.content;
-        const imageUrl = req.body.imageUrl;
-        const UserId = await jwt.getUserId(req);
-        if(!title || !content) {
-
-            return res.status(400).json({ error: "Informations manquantes"});
-
-        }
-
-        let Post = await db.Post.findOne({ where: { title }});
-        
-        if(Post) {
-
-            return res.status(400).json({ error: "Titre déjà Existant"});
-
-        }
-        
-        Post = await db.Post.create({
-
-            title,
-            content,
-            imageUrl, 
-            UserId,
-
-        });
-
-        return res.status(200).json({ message: "Post Ajouté !", Post });
-
-        } catch (error) {
-
-            return res.status(500).json({ message: error.message  });
-            
-        }
-
+        await db.Post.create(post);
+        return res.status(201).json({ message: "Post Ajouté !"});
+    } catch {
+        return res.status(500).json({ message: error.message });
     }
+}
 
 
 
-
-// AFFICHER UN SEUL POST EN FONCTION DE SON ID //
 
 exports.getOnePost = async (req, res) => {
 
-try {
+    try {
+        const post = req.params.id;
+        const UserId = await jwt.getUserId(req);
 
-    const PostId = req.params.id;
-    const Post = await db.Post.findOne({ 
-        where: { id: PostId }, 
-        include: [db.User],
-    
-    });
 
-    if(!Post) {
+        db.Post.findOne({
 
-        return res.status(400).json({ error: "Le Post est Inexistant" });
+            where: { 
+                UserId, 
+                post: post.id,
+            },
 
-    }
+        })
 
-    
-    return res.status(200).json({ Post });
+        .then(() => {
+
+            return res.status(201).json({ message: "Votre post a été supprimé !"})
+
+        })
+
         
     } catch (error) {
 
@@ -78,7 +52,7 @@ try {
         
     }
 
-};
+}
 
 
 
@@ -86,29 +60,7 @@ try {
 // AFFICHER TOUS LES POSTS //
 
 exports.getAllPost = async (req, res) => {
-
-    try {
-
-        const Post = await db.Post.findAll({ 
-        include: [{ 
-            model: db.User, 
-            attributes: ["firstname"] }],
-            order: [["createdAt", "DESC"]]
-        })
-
-        if(!Post) {
-
-            return res.status(400).json({ error: "Aucun Post" });
-        }
-
-        return res.status(200).json({ Post });
-    
-    } catch (error) {
-
-        return res.status(500).json({ message: error.message });
-        
-    }
-
+    return res.status(200).json(await db.Post.findAll())
 }
 
 
@@ -118,45 +70,48 @@ exports.getAllPost = async (req, res) => {
 exports.modifyPost = async (req, res) => {
 
     try {
+
+        const post = req.params.id;
         const UserId = await jwt.getUserId(req);
-        const PostId = req.params.id;
-
-        if(!req.body) {
-
-            return res.status(400).json({ error: "Ce message ne doit pas être vide" });
-        }
-
-        db.Post.findOne({ 
-
-            where: { 
-                id: PostId, 
-                UserId: UserId 
-            }, 
         
-        })
+
+            db.Post.findOne({
+
+                where: { 
+                    UserId,
+                    post: post.id
+
+                },
+    
+            })
+
 
         .then((Post) => {
 
             if(!Post) {
 
-                return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou que le post n'existe pas" });
+                return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
 
             } else {
 
-                return Post.update({ 
-                    content: req.body.content, 
-                    title: req.body.title 
-                })
-            }
+                Post.title = post.title,
+                Post.content = post.content,
+                Post.imageUrl = post.imageUrl
 
+            }
+            
+            Post.save();
         })
+
+
 
         .then(() => {
 
-            return res.status(201).json({ message: "Post modifié" });
+            return res.status(201).json({ message: "Le post vient d'être modifié" });
 
         })
-        
+
+
     } catch (error) {
 
         return res.status(500).json({ message: error.message });
@@ -168,61 +123,51 @@ exports.modifyPost = async (req, res) => {
 
 
 
-// SUPPRIMER LE POST //
 
+// SUPPRIMER LE POST //
 
 exports.deletePost = async (req, res) => {
 
     try {
+        const post = req.params.id;
         const UserId = await jwt.getUserId(req);
-        const PostId = req.params.id;
-
-        if(!req.body) {
-
-            return res.status(400).json({ error: "Ce message ne doit pas être vide" });
-        }
 
 
-        // RECUPERER LE POST DEPUIS LA BASE DE DONNEES //
-
-        db.Post.findOne({ 
+        db.Post.findOne({
 
             where: { 
-                id: PostId, 
-                UserId: UserId 
-            }, 
-        
+                UserId, 
+                post: post.id, 
+            },
+
         })
 
-        // LA PROMESSE : RECUPERER LE REUSLTAT DE LA PREMIERE FONCTION POUR LA DEUXIEME//
 
         .then((Post) => {
 
             if(!Post) {
 
-                return res.status(403).json({ error: "La publication n'est pas là ou vous n'avez pas l'authorisation" });
+                return res.status(403).json({ error: "Vous n'avez pas l'authorisation"})
 
             } else {
 
-                return Post.destroy({ })
+                return Post.destroy();
+
             }
 
         })
 
         .then(() => {
 
-            return res.status(201).json({ message: "Post supprimé" });
+            return res.status(201).json({ message: "Votre post a été supprimé !"})
 
         })
 
-
-        // EN CAS D'ERREUR //
         
     } catch (error) {
 
         return res.status(500).json({ message: error.message });
         
     }
-    
 
 }
