@@ -133,19 +133,19 @@ exports.deletePost = async (req, res) => {
 
     try {
         const postId = req.params.id;
-        const postDeleted = await db.Post.destroy({
+        await db.Post.destroy({
             
             where: {
                 id: postId
             }
         });
 
-        if(postDeleted) {
-            return res.status(201).json({ message: "Votre post vient d'être supprimé !"})
 
-        }
+        return res.status(201).json({ message: "Votre post vient d'être supprimé !"})
 
-    }catch(error) {
+        
+
+    } catch(error) {
         return res.status(500).send(error.message);
     }
 };
