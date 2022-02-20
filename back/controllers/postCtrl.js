@@ -63,6 +63,7 @@ exports.getOnePost = async (req, res) => {
 // AFFICHER TOUS LES POSTS //
 
 exports.getAllPost = async (req, res) => {
+    await jwt.getUserId(req);
     return res.status(200).json(await db.Post.findAll())
 }
 
@@ -75,19 +76,18 @@ exports.modifyPost = async (req, res) => {
     try {
 
         const post = req.params.id;
-        const UserId = await jwt.getUserId(req);
+        await jwt.getUserId(req);
         
-
             db.Post.findOne({
 
                 where: { 
-                    UserId,
-                    post: post.id
-
+                    id: post,
+                    title: title,
+                    content: content,
+                    imageUrl: imageUrl
                 },
     
             })
-
 
         .then((Post) => {
 
@@ -106,14 +106,11 @@ exports.modifyPost = async (req, res) => {
             Post.save();
         })
 
-
-
         .then(() => {
 
             return res.status(201).json({ message: "Le post vient d'être modifié" });
 
         })
-
 
     } catch(error) {
 
