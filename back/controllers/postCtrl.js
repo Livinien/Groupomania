@@ -115,7 +115,7 @@ exports.modifyPost = async (req, res) => {
         })
 
 
-    } catch (error) {
+    } catch(error) {
 
         return res.status(500).json({ message: error.message });
         
@@ -142,7 +142,6 @@ exports.deletePost = async (req, res) => {
 
 
         return res.status(201).json({ message: "Votre post vient d'être supprimé !"})
-
         
 
     } catch(error) {
@@ -151,45 +150,3 @@ exports.deletePost = async (req, res) => {
 };
  
 
-
-
-
- // const post = JSON.parse(req.body.post);
-    // post.imageUrl = req.file.filename;
-    // post.UserId = await jwt.getUserId(req);
-    
-
-    //     db.Post.findOne({
-
-    //         where: { 
-    //             UserId, 
-    //             post: post.id,
-    //         },
-
-    //     })
-
-    //     try {
-    //         await db.Post.destroy(post);
-    //         return res.status(201).json({ message: "Le post a été supprimé !"});
-    //     } catch {
-    //         return res.status(500).json({ message: error.message });
-    //     }
-
-// }
-
-
-
-
-// .then((Post) => {
-
-//     if(!Post) {
-
-//         return res.status(403).json({ error: "Vous n'avez pas l'authorisation"})
-
-//     } else {
-
-//         return Post.destroy();
-
-//     }
-
-// })
