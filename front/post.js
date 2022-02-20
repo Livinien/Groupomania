@@ -73,8 +73,10 @@ const createPost = (post) => {
 
     // IMAGE DU POST //   
     const image = document.createElement('img');
-    image.src = post.imageUrl;
+    image.src = '../img_posts/' + post.imageUrl;
     article.appendChild(image);
+
+    console.log(image);
 
 
 
