@@ -4,8 +4,6 @@ const fs = require('fs');
 
 
 
-
-
 // CREATION DE POST //
 
 exports.createPost = async (req, res) => {
@@ -26,44 +24,9 @@ exports.createPost = async (req, res) => {
 
 
 
-exports.getOnePost = async (req, res) => {
-
-    try {
-        const post = req.params.id;
-        const UserId = await jwt.getUserId(req);
-
-
-        db.Post.findOne({
-
-            where: { 
-                UserId, 
-                post: post.id,
-            },
-
-        })
-
-        .then(() => {
-
-            return res.status(201).json({ message: "Votre post a été supprimé !"})
-
-        })
-
-        
-    } catch (error) {
-
-        return res.status(500).json({ message: error.message });
-        
-    }
-
-}
-
-
-
-
 // AFFICHER TOUS LES POSTS //
 
 exports.getAllPost = async (req, res) => {
-    await jwt.getUserId(req);
     return res.status(200).json(await db.Post.findAll())
 }
 
@@ -75,42 +38,25 @@ exports.modifyPost = async (req, res) => {
 
     try {
 
-        const post = req.params.id;
-        await jwt.getUserId(req);
+        const modifiedPost = JSON.parse(req.body.post);
+        modifiedPost.imageUrl = req.file.filename;
+        const userId = await jwt.getUserId(req);
         
-            db.Post.findOne({
+        const post = await db.Post.findByPk(req.params.id);
+        if(post === null) {
+            return res.status(404).json({ error: "article introuvable"});
+        }
+        if(post.UserId != userId) {
+            return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
+        }
+        // SUPPRIMER L'IMAGE //
+        post.title = modifiedPost.title,
+        post.content = modifiedPost.content,
+        post.imageUrl = modifiedPost.imageUrl
 
-                where: { 
-                    id: post,
-                    title: title,
-                    content: content,
-                    imageUrl: imageUrl
-                },
-    
-            })
+        await post.save();
 
-        .then((Post) => {
-
-            if(!Post) {
-
-                return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
-
-            } else {
-
-                Post.title = post.title,
-                Post.content = post.content,
-                Post.imageUrl = post.imageUrl
-
-            }
-            
-            Post.save();
-        })
-
-        .then(() => {
-
-            return res.status(201).json({ message: "Le post vient d'être modifié" });
-
-        })
+        return res.status(201).json({ message: "Le post vient d'être modifié" });
 
     } catch(error) {
 
@@ -123,23 +69,15 @@ exports.modifyPost = async (req, res) => {
 
 
 
-
 // SUPPRIMER LE POST //
 
 exports.deletePost = async (req, res) => {
 
     try {
-        const postId = req.params.id;
-        await db.Post.destroy({
-            
-            where: {
-                id: postId
-            }
-        });
-
+        const post = await db.Post.findByPk(req.params.id);
+        await post.destroy();
 
         return res.status(201).json({ message: "Votre post vient d'être supprimé !"})
-        
 
     } catch(error) {
         return res.status(500).send(error.message);
