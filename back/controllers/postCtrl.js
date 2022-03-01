@@ -49,14 +49,22 @@ exports.modifyPost = async (req, res) => {
         if(post.UserId != userId) {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
         }
+
+        
+        
         // SUPPRIMER L'IMAGE //
-        post.title = modifiedPost.title,
-        post.content = modifiedPost.content,
-        post.imageUrl = modifiedPost.imageUrl
 
-        await post.save();
-
-        return res.status(201).json({ message: "Le post vient d'être modifié" });
+        fs.unlink(`img_posts/${post.imageUrl}`, async (error) => {
+            console.log(error);
+            post.title = modifiedPost.title
+            post.content = modifiedPost.content
+            post.imageUrl = modifiedPost.imageUrl
+    
+            await post.save();
+    
+            return res.status(201).json({ message: "Le post vient d'être modifié" });
+            
+        });
 
     } catch(error) {
 
@@ -68,16 +76,23 @@ exports.modifyPost = async (req, res) => {
 
 
 
-
 // SUPPRIMER LE POST //
 
 exports.deletePost = async (req, res) => {
 
     try {
         const post = await db.Post.findByPk(req.params.id);
-        await post.destroy();
 
-        return res.status(201).json({ message: "Votre post vient d'être supprimé !"})
+        fs.unlink(`img_posts/${post.imageUrl}`, async (error) => {
+            console.log(error);
+
+            await post.destroy();
+
+            return res.status(201).json({ message: "Votre post vient d'être supprimé !"})
+            
+        });
+
+        
 
     } catch(error) {
         return res.status(500).send(error.message);
