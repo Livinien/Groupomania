@@ -76,7 +76,6 @@ const createPost = (post) => {
     image.src = '../img_posts/' + post.imageUrl;
     article.appendChild(image);
 
-    console.log(image);
 
 
 
@@ -366,11 +365,37 @@ const createPost = (post) => {
     
 //--------------------- COMMENTAIRE --------------------------//
         
+    // LIKES //
+    const likes = document.createElement("a");
+    likes.classList.add('likes');
+    likes.textContent = `👍🏼 J'aime`;
+    article.appendChild(likes);
+
+
+    // ON/OFF LORSQU'ON CLIQUE SUR LE BOUTON "J'AIME" //
+    let clicked = false;
+
+    likes.addEventListener('click', async (e) => {
+        if(!clicked) {
+            clicked = true;
+            likes.style.background = "#2c95ff";
+            likes.style.color = "#fff";
+
+        } else {
+            clicked = false;
+            likes.style.background = "#fff";
+            likes.style.color = "#000";
+        }
+    });
+
+
     // LIEN CLIQUABLE "COMMENTAIRES" //
     const comments = document.createElement("a");
     comments.setAttribute("href", "#");
     comments.textContent = `Commentaires`;
     article.appendChild(comments);
+
+    
 
     // LE CHAMPS (TEXTAREA) //
     const textarea = document.createElement('textarea');
@@ -452,7 +477,7 @@ const createPost = (post) => {
 
     });
 
-    
+    // LIKES //
 
     // const liked = post.likes.filter((like) => like.email === Authentification.getEmail()).length > 0;
 
@@ -463,7 +488,6 @@ const createPost = (post) => {
     // article.appendChild(likes);
 
     // likes.addEventListener("click", () => like(post, likes));
-    
     
     
     return article;
