@@ -494,9 +494,6 @@ strong:nth-child(2) {
     box-shadow: 2px 5px 24px -5px rgba(0, 0, 0, 0.883);
 }
 
-.blue {
-    background-color: #6ac1ff
-}
 
 .likes:hover {
     transition: 0.2s ease-in-out;
