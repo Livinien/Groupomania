@@ -220,8 +220,9 @@ form {
     
 }
 
+
 .post button {
-    margin: 30px 160px 30px;
+    margin: 20px 160px 30px;
     padding: 10px 40px;
     border-radius: 5px;
     border: none;
@@ -480,20 +481,26 @@ strong:nth-child(2) {
 /* BOUTON LIKE */
 
 
-.like {
-
+.likes {
     padding: 4px 4px;
     border-radius: 5px;
+    width: 80px;
     border: none;
-    color: #e8efff;
+    color: #000;
     cursor: pointer;
+    margin: 20px 190px 30px;
     outline: none;
-    background: #0080ff;
-
+    font-weight: bold;
+    box-shadow: 2px 5px 24px -5px rgba(0, 0, 0, 0.883);
 }
 
+.blue {
+    background-color: #6ac1ff
+}
 
-
+.likes:hover {
+    transition: 0.2s ease-in-out;
+}
 
 
 
