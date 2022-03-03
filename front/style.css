@@ -492,11 +492,7 @@ strong:nth-child(2) {
     outline: none;
     font-weight: bold;
     box-shadow: 2px 5px 24px -5px rgba(0, 0, 0, 0.883);
-}
-
-
-.likes:hover {
-    transition: 0.2s ease-in-out;
+   
 }
 
 
