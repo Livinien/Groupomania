@@ -24,6 +24,7 @@ exports.createComment = async (req, res) => {
             content,
             UserId,
             PostId,
+            
 
         });
 
@@ -66,7 +67,7 @@ exports.getAllComment = async (req, res) => {
 
         }
 
-        return res.status(201).json(({ Comment }));
+        return res.status(201).json(Comment);
 
     } catch (error) {
 
@@ -155,7 +156,10 @@ exports.deleteComment = async (req, res) => {
 
         db.Comment.findOne({
 
-            where: { id: deleteComment, UserId: UserId },
+            where: { 
+                id: deleteComment, 
+                UserId: UserId 
+            },
 
         })
 
@@ -173,7 +177,6 @@ exports.deleteComment = async (req, res) => {
             }
 
         })
-
 
         .then(() => {
 

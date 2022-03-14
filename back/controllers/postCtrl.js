@@ -4,6 +4,7 @@ const fs = require('fs');
 
 
 
+
 // CREATION DE POST //
 
 exports.createPost = async (req, res) => {
@@ -11,7 +12,6 @@ exports.createPost = async (req, res) => {
     const post = JSON.parse(req.body.post);
     post.imageUrl = req.file.filename;
     post.UserId = await jwt.getUserId(req);
-
 
     try {
         await db.Post.create(post);
@@ -29,7 +29,6 @@ exports.createPost = async (req, res) => {
 exports.getAllPost = async (req, res) => {
     return res.status(200).json(await db.Post.findAll())
 }
-
 
 
 // MODIFIER LE POST //
@@ -83,6 +82,12 @@ exports.deletePost = async (req, res) => {
     try {
         const post = await db.Post.findByPk(req.params.id);
 
+        const userId = await jwt.getUserId(req);
+        
+        if(post.UserId != userId) {
+            return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
+        }
+
         fs.unlink(`img_posts/${post.imageUrl}`, async (error) => {
             console.log(error);
 
@@ -92,11 +97,50 @@ exports.deletePost = async (req, res) => {
             
         });
 
-        
-
     } catch(error) {
         return res.status(500).send(error.message);
     }
 };
  
 
+
+
+// LIKES //
+
+exports.likePost = async (req, res) => {
+    //Sur quel post on est ?
+    const PostId = req.params.id;
+    //Qui veut liker ?
+    const UserId = await jwt.getUserId(req);
+    //Existe-t-il un like ?
+    let like = await db.Like.findOne({
+        where: {
+            PostId, //quoi
+            UserId, //qui
+        },
+    });
+    //Si oui
+    if (like) {
+        //Je le suprime
+        await like.destroy();
+        //Et je stop la requête
+        return res.status(200).json(false);
+    }
+    //Si non
+    //Je le crée
+    like = await db.Like.create({
+        PostId, //quoi
+        UserId, //qui
+    });
+    //Et je stop la requête
+    return res.status(201).json(true);
+};
+
+
+
+
+
+exports.likedPost = async (req, res) => {
+    
+
+}

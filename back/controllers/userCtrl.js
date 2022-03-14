@@ -14,13 +14,13 @@ exports.signup = async (req, res) => {
         const lastname = req.body.lastname;
         const email = req.body.email;
         let password = req.body.password;
-        let user = await db.User.findOne({ where: { 
-            
-            firstname, 
-            lastname, 
-            email 
-        }   
-        
+        let user = await db.User.findOne({ where: {
+
+            firstname,
+            lastname,
+            email
+        }
+
     });
 
 
@@ -38,7 +38,7 @@ exports.signup = async (req, res) => {
 
             firstname,
             lastname,
-            email, 
+            email,
             password,
 
         });
@@ -46,12 +46,12 @@ exports.signup = async (req, res) => {
         const token = jwt.generateToken(user);
         return res.status(200).json({ token, message: "Utilisateur Créer" });
 
-        
+
 
     } catch (error) {
 
         return res.status(500).json({ error })
-        
+
     }
 
 }
@@ -66,16 +66,15 @@ exports.login = async (req,res) => {
 
         const email = req.body.email;
         const password = req.body.password;
-        let User = await db.User.findOne({ 
-            
-            where:{ 
+        let User = await db.User.findOne({
 
-            email 
-        
-        } 
+            where:{
+
+            email
+
+        }
 
     });
-
 
         if(!User) {
 
@@ -92,13 +91,33 @@ exports.login = async (req,res) => {
         }
 
         const token = jwt.generateToken(User);
-        return res.status(200).json({ token });
+        return res.status(200).json({ token, userId: User.id });
 
-        
 
     } catch (error) {
-        
+
         return res.status(500).json({ message: error.message })
     }
 
 }
+
+
+exports.getPostsLiked = async (req, res) => {
+    //Qui ?
+    const userId = req.body.userId; //Par exemple (ou via param, ou via token)
+
+    const user = await db.User.findOne({
+        where: { id: userId },
+        include: [db.Like],
+        include: [{ model: db.like, include: [db.Post] }],
+    });
+    if (!user) {
+        return res.status(404).json({ error: "Erreur !" });
+    }
+    return res.status(200).json({ user });
+
+};
+
+
+
+
