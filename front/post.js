@@ -373,16 +373,14 @@ const createPost = (post) => {
 
 
     // ON/OFF LORSQU'ON CLIQUE SUR LE BOUTON "J'AIME" //
-    let clicked = false;
 
     likes.addEventListener('click', async (e) => {
-        if(!clicked) {
-            clicked = true;
+        const liked = await sendLikePost(post.id)
+        if(liked) {
             likes.style.background = "#2c95ff";
             likes.style.color = "#fff";
 
         } else {
-            clicked = false;
             likes.style.background = "#fff";
             likes.style.color = "#000";
         }

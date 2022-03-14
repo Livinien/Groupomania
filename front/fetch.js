@@ -110,6 +110,30 @@ async function sendModifyPost(post, id, image) {
 }
 
 
+async function sendLikePost(id) {
+    
+    let token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:3001/api/post/" + id + "/like", {
+
+        method: "POST",
+        headers: { 
+        
+            Authorization: "Bearer " + token,
+            
+        },
+        
+        body: {},
+        
+    });
+
+    const json = await res.json();
+    return json.Post;
+
+}
+
+
+
     
 
 
