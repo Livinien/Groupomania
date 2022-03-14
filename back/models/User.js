@@ -51,11 +51,20 @@ module.exports = (sequelize, DataType) => {
             onUpdate: "CASCADE",
         })
 
+        User.hasMany(models.Like, { 
+            foreignKey: {
+                allowNull: true,
+
+            },  
+            oneDelete: "SET NULL", 
+            onUpdate: "CASCADE",
+        })
 
     }
 
     return User;
 
 };
+
 
 
