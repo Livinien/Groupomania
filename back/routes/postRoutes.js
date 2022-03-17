@@ -10,7 +10,7 @@ router.put("/:id", auth, multer, postCtrl.modifyPost);
 router.get("/", auth, postCtrl.getAllPost);
 router.delete("/:id", auth, postCtrl.deletePost);
 router.post("/:id/like", auth, postCtrl.likePost);
-router.post("/:id/liked", auth, postCtrl.likePost);
+router.get("/:id/liked", auth, postCtrl.likedPost);
 
 
 
