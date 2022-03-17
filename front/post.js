@@ -493,19 +493,6 @@ const createPost = (post) => {
 
     });
 
-    // LIKES //
-
-    // const liked = post.likes.filter((like) => like.email === Authentification.getEmail()).length > 0;
-
-    // const likes = document.createElement("a");
-    // likes.setAttribute("href", "#");
-    // likes.textContent = `${post.likes.length}
-    //                      ${liked ? "Je n'aime plus": "J'aime"}`;
-    // article.appendChild(likes);
-
-    // likes.addEventListener("click", () => like(post, likes));
-    
-    
     return article;
     
 };    
