@@ -110,6 +110,8 @@ async function sendModifyPost(post, id, image) {
 }
 
 
+// ENVOYER LE LIKE DU POST DANS LA BDD //
+
 async function sendLikePost(id) {
     
     let token = localStorage.getItem("token");
@@ -127,14 +129,35 @@ async function sendLikePost(id) {
         
     });
 
-    const json = await res.json();
-    return json.Post;
+    return await res.json();
+    
 
 }
 
 
 
+// SI LE POST A DÉJÀ ÉTÉ LIKER OU NON //
+
+async function sendLikedPost(id) {
     
+    let token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:3001/api/post/" + id + "/liked", {
+
+        method: "GET",
+        headers: { 
+        
+            Authorization: "Bearer " + token,
+            
+        },
+        
+    });
+
+    return await res.json();
+    
+}
+
+
 
 
 
@@ -310,6 +333,41 @@ async function getComments(id) {
 }
 
 
+
+
+
+                // SECTION PROFILE //
+
+
+
+// AFFICHER L'IMAGE DU PROFILE //
+
+
+async function sendImage(image) {
+
+    console.log(post, image);
+    const formData = new FormData()
+    formData.append('image', image);
+    
+    let token = localStorage.getItem("token");
+
+    const res = await fetch("http://localhost:3001/api/profile", {
+
+        method: "POST",
+        headers: { 
+        
+            Authorization: "Bearer " + token,
+            
+        },
+        
+        body: formData,
+        
+    });
+
+    const json = await res.json();
+    return json.Post;
+
+}
 
 
 
