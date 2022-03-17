@@ -108,39 +108,53 @@ exports.deletePost = async (req, res) => {
 // LIKES //
 
 exports.likePost = async (req, res) => {
-    //Sur quel post on est ?
+    // Sur quel post on est ?
     const PostId = req.params.id;
-    //Qui veut liker ?
+    // Qui veut liker ?
     const UserId = await jwt.getUserId(req);
-    //Existe-t-il un like ?
+    // Existe-t-il un like ?
     let like = await db.Like.findOne({
         where: {
-            PostId, //quoi
-            UserId, //qui
+            PostId, // quoi
+            UserId, // qui
         },
     });
-    //Si oui
+    // Si oui
     if (like) {
         //Je le suprime
         await like.destroy();
-        //Et je stop la requête
+        // Et je stop la requête
         return res.status(200).json(false);
     }
-    //Si non
-    //Je le crée
+    // Si non
+    // Je le crée
     like = await db.Like.create({
-        PostId, //quoi
-        UserId, //qui
+        PostId, // quoi
+        UserId, // qui
     });
-    //Et je stop la requête
+    // Et je stop la requête
     return res.status(201).json(true);
 };
 
 
 
-
+// ENLEVER LE LIKE DU POST //
 
 exports.likedPost = async (req, res) => {
     
+    // Sur quel post on est ?
+    const PostId = req.params.id;
+    // Qui veut liker ?
+    const UserId = await jwt.getUserId(req);
+    // Existe-t-il un like ?
+    let liked = await db.Like.findOne({
+        where: {
+            PostId, // quoi
+            UserId, // qui
+        },
+    });
+    // Si oui
+    return res.status(200).json(liked !== null);
 
 }
+
