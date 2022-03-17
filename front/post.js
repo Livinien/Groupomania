@@ -372,19 +372,37 @@ const createPost = (post) => {
     article.appendChild(likes);
 
 
+
     // ON/OFF LORSQU'ON CLIQUE SUR LE BOUTON "J'AIME" //
 
     likes.addEventListener('click', async (e) => {
+    
         const liked = await sendLikePost(post.id)
+        if(!liked) {
+            likes.style.background = "#fff";
+            likes.style.color = "#000";
+
+        } else {
+            
+            likes.style.background = "#2c95ff";
+            likes.style.color = "#fff";
+        }
+
+    });
+
+
+    sendLikedPost(post.id).then(liked => {
+        console.log(liked);
         if(liked) {
             likes.style.background = "#2c95ff";
             likes.style.color = "#fff";
-
+    
         } else {
             likes.style.background = "#fff";
             likes.style.color = "#000";
         }
-    });
+    })
+
 
 
     // LIEN CLIQUABLE "COMMENTAIRES" //
