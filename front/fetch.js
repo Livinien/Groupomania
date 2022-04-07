@@ -289,16 +289,13 @@ async function sendComment(comment) {
         },
         
         body: JSON.stringify(comment),
-        
 
     });
-
 
     const json = await res.json();
     return json.comment;
     
 }
-
 
 
 
@@ -337,15 +334,14 @@ async function getComments(id) {
 
 
                 // SECTION PROFILE //
-
-
+                
 
 // AFFICHER L'IMAGE DU PROFILE //
 
 
 async function sendImage(image) {
 
-    console.log(post, image);
+    console.log(image);
     const formData = new FormData()
     formData.append('image', image);
     
@@ -365,13 +361,9 @@ async function sendImage(image) {
     });
 
     const json = await res.json();
-    return json.Post;
+    return json.User;
 
 }
-
-
-
-
 
 
 

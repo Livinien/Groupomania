@@ -17,7 +17,8 @@
 
 </head>
 
-  <body>
+
+<body>
 
 
     <nav>
@@ -34,39 +35,47 @@
     </nav>
 
 
+
+
     <div class="container">
 
-        <div class="card">
+        <div id="card" class="card_profile">
 
-            <img class="card_image" src="" alt="">
-            <h1 class="card_title">Flavien</h1>
+            <form method="POST" id="imageProfile">
 
-            <form action="" method="POST" id="modifyPicture">
-                <input type="file" name="fileUpload" accept="fileUpload" id="fileUpload">
-                <div id="uploadedImage"></div>
-                <button type="submit" class="btn btn-primary">Modifie ton Avatar</button>
+                <img id="image" class="card_image" alt="Photo de Profile">
+
+                <input type="file" name="fileUpload" accept="fileUpload" id="imageUrl" class="upload_img">
+                
+            
+                <button type="submit" class="btn_blue">Modifie ton Avatar</button>
+
             </form>
 
 
-            <div class="card_about">Lorem ipsum dolor sit amet consectetur, adipisicing elit. A, molestias quaerat veniam molestiae nam neque est harum porro soluta aliquid culpa et dolore possimus. Dolor recusandae optio iste natus ea!
-            </div>
+            
+           <form method="POST" id="infoProfile">
 
-            <br>
+                <input id="name" class="card_name" type="text" placeholder="Votre Pseudo">
 
-            <button type="button" class="btn btn-danger">Supprimer mon Compte</button>
+                <textarea id="description" class="card_about" cols="30" rows="10" placeholder="Description..."></textarea>
 
+                <button type="submit" class="btn_green">Modifier son Profile</button>
+
+           </form>
+
+            
         </div>
+
 
     </div>
 
       
-
-  
-      
       
     <script src="/front/fetch.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="/front/profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-  </body>
+</body>
 
 </html>

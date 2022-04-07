@@ -174,7 +174,7 @@ const createPost = (post) => {
         article.appendChild(modifiePost);
 
 
-        // CROIX POUR FERMER LA FENETRE DU MODAL //
+        // CROIX POUR FERMER LA FENÊTRE DU MODAL //
         const croix = document.createElement('h2');
         croix.classList.add('cross');
         croix.style.display = "none";
@@ -261,7 +261,7 @@ const createPost = (post) => {
             console.log(postModify);
 
             return false
-                        
+            
         })
     
 
@@ -363,7 +363,7 @@ const createPost = (post) => {
     }
 
     
-//--------------------- COMMENTAIRE --------------------------//
+//--------------------- LIKES --------------------------//
         
     // LIKES //
     const likes = document.createElement("a");
@@ -403,6 +403,8 @@ const createPost = (post) => {
         }
     })
 
+
+//--------------------- COMMENTAIRE --------------------------//
 
 
     // LIEN CLIQUABLE "COMMENTAIRES" //
@@ -492,7 +494,7 @@ const createPost = (post) => {
         }
 
     });
-
+    
     return article;
     
 };    
