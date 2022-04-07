@@ -81,7 +81,6 @@ exports.deletePost = async (req, res) => {
 
     try {
         const post = await db.Post.findByPk(req.params.id);
-
         const userId = await jwt.getUserId(req);
         
         if(post.UserId != userId) {
