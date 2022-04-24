@@ -3,8 +3,27 @@ const jwt = require("../middleware/jwt");
 const fs = require('fs');
 
 
+// RÉCUPÉRER L'IMAGE DANS L'ORDINATEUR //
 
-exports.profilePicture = async (req, res) => {
+exports.getImage = async (req, res) => {
+
+    try {
+
+        return res.status(200).json(await db.User.findOne())
+
+
+    } catch(error) {
+
+        return res.status(500).json({ message: error.message });
+    }
+    
+}
+
+
+
+// ENVOYER L'IMAGE A LA BDD //
+
+exports.postImage = async (req, res) => {
 
     try {
     
@@ -14,7 +33,7 @@ exports.profilePicture = async (req, res) => {
         
 
         // UPLOADER L'IMAGE DE PROFILE //
-        const profileForm = await db.User.findByPk(jwt);
+        const profileForm = await db.User.findByPk(userId);
 
         if(profileForm === null) {
             return res.status(404).json({ error: "article introuvable"});
@@ -26,17 +45,17 @@ exports.profilePicture = async (req, res) => {
 
 
 
-        // SUPPRIMER L'IMAGE //
+        // SUPPRIMER L'IMAGE // 
 
-        // fs.unlink(`img_posts/${profileForm.imageUrl}`, async (error) => {
-        //     console.log(error);
-        //     profileForm.imageUrl = profile.imageUrl
+        fs.unlink(`img_posts/${profileForm.imageUrl}`, async (error) => {
+            console.log(error);
+            profileForm.imageUrl = profile.imageUrl
     
-        //     await profileForm.save();
+            await profileForm.save();
     
-        //     return res.status(201).json({ message: "L'avatar vient d'être modifié" });
+            return res.status(201).json({ message: "L'avatar vient d'être modifié" });
         
-        // });
+        });
 
     } catch(error) {
 
@@ -44,3 +63,6 @@ exports.profilePicture = async (req, res) => {
     }
 
 }
+
+
+

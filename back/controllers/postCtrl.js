@@ -5,7 +5,7 @@ const fs = require('fs');
 
 
 
-// CREATION DE POST //
+// CRÉATION DE POST //
 
 exports.createPost = async (req, res) => {
     

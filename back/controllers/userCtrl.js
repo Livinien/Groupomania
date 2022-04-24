@@ -70,9 +70,9 @@ exports.login = async (req,res) => {
 
             where:{
 
-            email
+                email
 
-        }
+            }
 
     });
 
