@@ -28,6 +28,11 @@ module.exports = (sequelize, DataType) => {
             allowNull: false,
         },
 
+        imageUrl: {
+
+            type: DataType.STRING,
+            allowNull: false,
+        },
 
     });
 
@@ -59,6 +64,7 @@ module.exports = (sequelize, DataType) => {
             oneDelete: "SET NULL", 
             onUpdate: "CASCADE",
         })
+
 
     }
 

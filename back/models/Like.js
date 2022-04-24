@@ -9,7 +9,7 @@ module.exports = (sequelize, DataType) => {
         models.User.belongsToMany(models.Post, {through: Like});
         models.Post.belongsToMany(models.User, {through: Like});
 
-        Like.belongsTo(models.User); // Likes est associé à User (BelongsTo veux dire que c'est lui qui as la paramettre UserId)
+        Like.belongsTo(models.User); // Likes est associé à User (BelongsTo veux dire que c'est lui qui as le paramettre UserId)
         Like.belongsTo(models.Post); // Likes est associé à Post
     };
 
