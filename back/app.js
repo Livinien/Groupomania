@@ -13,6 +13,9 @@ const app = express();
 const userRoutes = require("./routes/userRoutes");
 const postRoutes = require("./routes/postRoutes");
 const commentRoutes = require("./routes/commentRoutes");
+const profileRoutes = require("./routes/profileRoutes");
+
+
 
 // AUTORISE //
 
@@ -28,11 +31,15 @@ app.use((req, res, next) => {
 app.use(express.json({limit:"2mb"}));
 app.use(express.urlencoded({limit:"2mb"}));
 
-// LES ROUTES POUR ACCEDER A L'API //
+
+
+
+// LES ROUTES POUR ACCÉDER À L'API //
 
 app.use("/api/user", userRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/Comment", commentRoutes);
+app.use("/api/profile", profileRoutes);
 
 
 
