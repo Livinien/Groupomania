@@ -131,7 +131,6 @@ async function sendLikePost(id) {
 
     return await res.json();
     
-
 }
 
 
@@ -339,11 +338,46 @@ async function getComments(id) {
 // AFFICHER L'IMAGE DU PROFILE //
 
 
-async function sendImage(image) {
+// RÉCUPÉRER L'IMAGE SUR L'ORDINATEUR //
 
-    console.log(image);
+async function getAvatar() {
+
+    return fetch("http://localhost:3001/api/profile", {
+        
+        method: "GET",
+        headers: {
+            
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Bearer ${Authentification.getToken()}`
+        
+        },
+        
+    })
+
+
+    .then(res => {
+
+        if(res.ok) {
+
+            return res.json();
+
+        }
+
+    })
+
+}
+
+
+
+
+// ENVOYER L'IMAGE //
+
+async function sendImage(file) {
+
+    console.log(file);
     const formData = new FormData()
-    formData.append('image', image);
+    formData.append('file', file);
     
     let token = localStorage.getItem("token");
 

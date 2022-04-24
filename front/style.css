@@ -228,13 +228,6 @@ button:hover {
 }
 
 
-
-
-textarea {
-    margin: 30px 40px 30px;
-    width: 80%; 
-}
-
 .post .coms {
     position: relative;
 }
@@ -491,14 +484,14 @@ strong:nth-child(2) {
 
 /* PROFILE */
 
-.container .card {
-    margin: 0 auto;
+.container .card_profile {
+    margin: 0 auto 50px auto;
     margin-top: 120px;
-    padding: 0 0 20px 0;
+    padding: 20px 0 20px 0;
 }
 
 
-.card {
+.card_profile {
     text-align: center;
     width: 400px;
     padding: 20px;
@@ -509,50 +502,76 @@ strong:nth-child(2) {
 }
 
 
-#modifyPicture {
-    margin-top: 30px;
+.upload_img {
+    margin: 0 0 0 -80px;
+    padding: 20px;
 }
 
 
-.card .card_image {
+.card_profile .card_image {
     width: 200px;
     height: 200px;
-    margin-top: 30px;
-}
-
-
-.card .card_title {
-    margin-top: 30px;
-}
-
-
-.card .card_about {
-    margin-top: 30px;
-}
-
-
-.card .btn {
-    margin: 20px 70px 0 70px ;
-    padding: 9px 32px;
 }
 
 
 .card_image {
     display: block;
-    margin: 0 auto;
-    width: 100px;
-    height: 100px;
+    margin: 0 100px;
     border-radius: 50%;
     overflow: hidden;
     object-fit: cover;
-    box-shadow:  0 10px 20px rgba(0, 0, 0, 0), 0 6px 36px rgba(0, 0, 0, 0.13);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0), 0 6px 36px rgba(0, 0, 0, 0.13);
     border: 3px solid #fff;
     margin-top: 10px;
 }
 
 
-.card_title {
-    margin-top: 20px;
+.card_profile .card_name {
+    margin: 30px 0 0 -110px;
 }
+
+.card_about {
+    display: flex;
+    justify-content: center;
+    margin: 30px 20px 40px 25px;
+    width: 70%;
+    
+}
+
+.card_profile .btn_blue {
+    display: flex;
+    margin: 20px 70px 50px 100px ;
+    border: none;
+    padding: 9px 32px;
+    background-color: #017bcc;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+.card_profile .btn_blue:hover {
+    background: #4eb8ff;
+}
+
+
+.card_profile .btn_green {
+    display: flex;
+    margin: 20px 70px 20px 100px ;
+    border: none;
+    padding: 9px 32px;
+    background-color: #06ac00;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+.card_profile .btn_green:hover {
+    background: #01d124;
+}
+
+
+
 
 
