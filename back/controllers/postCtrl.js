@@ -42,9 +42,11 @@ exports.modifyPost = async (req, res) => {
         const userId = await jwt.getUserId(req);
         
         const post = await db.Post.findByPk(req.params.id);
+        
         if(post === null) {
             return res.status(404).json({ error: "article introuvable"});
         }
+
         if(post.UserId != userId) {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
         }

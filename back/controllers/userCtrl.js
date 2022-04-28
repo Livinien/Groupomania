@@ -13,12 +13,14 @@ exports.signup = async (req, res) => {
         const firstname = req.body.firstname;
         const lastname = req.body.lastname;
         const email = req.body.email;
+        const imageUrl = ''
         let password = req.body.password;
         let user = await db.User.findOne({ where: {
 
             firstname,
             lastname,
-            email
+            email,
+            imageUrl
         }
 
     });
@@ -40,6 +42,9 @@ exports.signup = async (req, res) => {
             lastname,
             email,
             password,
+            imageUrl
+            
+
 
         });
 
@@ -100,6 +105,8 @@ exports.login = async (req,res) => {
     }
 
 }
+
+
 
 
 exports.getPostsLiked = async (req, res) => {
