@@ -371,13 +371,13 @@ async function getAvatar() {
 
 
 
-// ENVOYER L'IMAGE //
+// ENVOYER L'IMAGE A LA BDD //
 
 async function sendImage(file) {
 
     console.log(file);
     const formData = new FormData()
-    formData.append('file', file);
+    formData.append('image', file);
     
     let token = localStorage.getItem("token");
 

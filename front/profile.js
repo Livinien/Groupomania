@@ -1,5 +1,5 @@
 
-// AFFICHER ET MODIFIER SA PHOTO DE PROFILE //
+// UPLOADE SA PHOTO DE PROFILE //
 
 
 const changeImageForm = document.querySelector("#imageUrl");
@@ -15,7 +15,8 @@ async function profile_img() {
     }
     
     changeImageForm.addEventListener('change', () => {
-    
+        
+
         if(changeImageForm.files && changeImageForm.files[0]) {
     
             // FileReader() permet d'afficher l'image une fois sélectionner //
@@ -30,13 +31,33 @@ async function profile_img() {
         
             reader.readAsDataURL(changeImageForm.files[0]);
     
-            sendImage(changeImageForm.files[0]);
-    
+            
         }
     });
 }
 
 profile_img();
+
+
+
+
+
+// AFFICHER L'IMAGE SUR LE SITE //
+
+const displayPicture = document.querySelector("#displayPicture");
+
+    displayPicture.addEventListener("click", (e) => {
+    
+        sendImage(changeImageForm.files[0]);
+
+        return false;
+    });
+
+
+
+
+
+
 
 
 
