@@ -29,35 +29,30 @@ exports.getImage = async (req, res) => {
 exports.postImage = async (req, res) => {
 
     try {
-
-        console.log("body:" + req.body, "file:" + req.file)
     
-        const profile = JSON.parse(req.body.profile);
-        profile.imageUrl = req.file.filename;
         const userId = await jwt.getUserId(req);
         
         
-
         // UPLOADER L'IMAGE DE PROFILE //
         const profileForm = await db.User.findByPk(userId);
 
-        if(profileForm === null) {
+        if(profileForm.id === null) {
             return res.status(404).json({ error: "L'avatar est introuvable"});
         }
 
-        if(profileForm.UserId != userId) {
+
+        if(profileForm.id !== userId) {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou l'avatar n'existe pas" });
         }
 
-
-
+      
 
 
         // SUPPRIMER L'IMAGE // 
 
         //fs.unlink(`img_posts/${profileForm.imageUrl}`, async (error) => {
           
-            profileForm.imageUrl = profile.imageUrl
+            profileForm.imageUrl = req.file.filename
     
             await profileForm.save();
     
