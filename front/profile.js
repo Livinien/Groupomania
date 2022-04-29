@@ -1,7 +1,6 @@
 
 // UPLOADE SA PHOTO DE PROFILE //
 
-
 const changeImageForm = document.querySelector("#imageUrl");
 const newImage = document.querySelector("#image");
 
@@ -9,6 +8,7 @@ const newImage = document.querySelector("#image");
 async function profile_img() {
 
     const avatar = await getAvatar();
+    console.log(avatar);
     
     if(avatar !== null) {
         newImage.src = avatar;
@@ -45,6 +45,8 @@ profile_img();
 // AFFICHER L'IMAGE SUR LE SITE //
 
 const displayPicture = document.querySelector("#displayPicture");
+displayPicture.src = '../img_posts/' + imageUrl;
+
 
     displayPicture.addEventListener("click", (e) => {
     
