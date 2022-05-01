@@ -29,10 +29,9 @@ exports.getImage = async (req, res) => {
 exports.postImage = async (req, res) => {
 
     try {
-    
         
         const userId = await jwt.getUserId(req);
-        //const sendPicture = 
+
 
         // UPLOADER L'IMAGE DE PROFILE //
         const profileForm = await db.User.findByPk(userId);
@@ -46,16 +45,24 @@ exports.postImage = async (req, res) => {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou l'avatar n'existe pas" });
         }
 
+
+
         profileForm.imageUrl = req.protocol + '://' + req.get('host') + "/img_posts/" + req.file.filename;
 
-
+        
         
 
         // REMPLACER L'IMAGE // 
 
-        fs.unlink(`img_posts/${profileForm.imageUrl}`, async (error) => {
-              
-            //profileForm.imageUrl = 
+        const sendPicture = profileForm.imageUrl.split('img_posts')[1];
+        fs.unlink(`img_posts/${sendPicture}`, async (error) => {
+            
+
+            if(error) {
+
+                return res.status(404).json({ message: "L'image n'a pas été changée" });
+
+            }
 
             await profileForm.save();
     
