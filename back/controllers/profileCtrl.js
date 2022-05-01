@@ -45,30 +45,34 @@ exports.postImage = async (req, res) => {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou l'avatar n'existe pas" });
         }
 
+        
+    
+
+        // REMPLACER L'IMAGE // 
+
+        const sendPicture = profileForm.imageUrl.split('/img_posts/')[1];
+
+        // Si sendPicture existe dans le dossier et si l'image du dossier est différente de l'image envoyée
+        if(sendPicture && sendPicture !== req.file.filename){
+
+            fs.unlink(`img_posts/${sendPicture}`, (error) => {
+            
+                if(error) {
+    
+                    return res.status(404).json({ message: "L'image n'a pas été changée" });
+    
+                }
+                    
+            });
+        }
 
 
         profileForm.imageUrl = req.protocol + '://' + req.get('host') + "/img_posts/" + req.file.filename;
 
-        
-        
+        await profileForm.save();
 
-        // REMPLACER L'IMAGE // 
+        return res.status(201).json(profileForm.imageUrl);
 
-        const sendPicture = profileForm.imageUrl.split('img_posts')[1];
-        fs.unlink(`img_posts/${sendPicture}`, async (error) => {
-            
-
-            if(error) {
-
-                return res.status(404).json({ message: "L'image n'a pas été changée" });
-
-            }
-
-            await profileForm.save();
-    
-            return res.status(201).json({ message: "L'avatar vient d'être modifié" });
-        
-        });
 
     } catch(error) {
 
@@ -76,6 +80,3 @@ exports.postImage = async (req, res) => {
     }
 
 }
-
-
-
