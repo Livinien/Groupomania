@@ -56,7 +56,7 @@ exports.modifyPost = async (req, res) => {
         // SUPPRIMER L'IMAGE //
 
         fs.unlink(`img_posts/${post.imageUrl}`, async (error) => {
-            console.log(error);
+            
             post.title = modifiedPost.title
             post.content = modifiedPost.content
             post.imageUrl = modifiedPost.imageUrl
