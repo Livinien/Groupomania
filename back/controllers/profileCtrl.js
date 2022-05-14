@@ -5,14 +5,14 @@ const fs = require('fs');
 
 // RÉCUPÉRER L'IMAGE DANS L'ORDINATEUR //
 
-exports.getImage = async (req, res) => {
+exports.getProfile = async (req, res) => {
 
     try {
 
         const UserId = await jwt.getUserId(req);
         const user = await db.User.findByPk(UserId);
 
-        return res.status(201).json(user.imageUrl);
+        return res.status(201).json(user.imageUrl, user.pseudo, user.description);
 
     
     } catch(error) {
@@ -78,5 +78,39 @@ exports.postImage = async (req, res) => {
 
         return res.status(500).json({ message: error.message });
     }
+
+}
+
+
+
+
+
+
+// MODIFIER LA BIOGRAPHIE //
+
+exports.modifyBiography = async (req, res) => {
+
+    // try {
+      
+        const pseudo_description_token = await jwt.getUserId(req);
+        const user = await db.User.findByPk(pseudo_description_token);
+
+        
+        user.pseudo = req.body.pseudo
+        user.description = req.body.description
+            
+
+
+        await user.save();
+        
+        return res.status(201).json({ message: "La biographie de l'utilisateur a bien été envoyé !" });
+
+    // }
+
+
+    // catch(error) {
+
+    //     return res.status(500).json({ message: error.message });
+    // }
 
 }
