@@ -9,8 +9,8 @@ const url = 'http://localhost:3001';
 
 async function signup(newUser) {
 
-    const res = await fetch(url + "/api/user/signup", 
-    { 
+    const res = await fetch(url + "/api/user/signup", { 
+
         method: "POST", 
         headers: { "Content-Type": "application/json" }, 
         body: JSON.stringify(newUser)
@@ -27,8 +27,8 @@ async function signup(newUser) {
 
 async function login(User) {
 
-    const res = await fetch(url + "/api/user/login",
-    {
+    const res = await fetch(url + "/api/user/login", {
+
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(User)
@@ -264,9 +264,6 @@ async function deletePost(id) {
 
 
 
-
-
-
                 // SECTION COMMENTAIRE //
 
 
@@ -340,7 +337,7 @@ async function getComments(id) {
 
 // RÉCUPÉRER L'IMAGE SUR L'ORDINATEUR //
 
-async function getAvatar() {
+async function getProfile() {
 
     return fetch("http://localhost:3001/api/profile", {
         
@@ -380,12 +377,13 @@ async function sendImage(file) {
     formData.append('image', file);
     
     let token = localStorage.getItem("token");
-
-    const res = await fetch("http://localhost:3001/api/profile", {
+    
+    const res = await fetch("http://localhost:3001/api/profile/avatar", {
 
         method: "POST",
         headers: { 
         
+            "Accept": "application/json",
             Authorization: "Bearer " + token,
             
         },
@@ -401,3 +399,26 @@ async function sendImage(file) {
 
 
 
+
+
+// ENVOYER LA BIOGRAPHIE A LA BDD //
+
+async function sendBiography(biographyToSend) {
+    
+    let token = localStorage.getItem("token");
+
+    await fetch("http://localhost:3001/api/profile", {
+
+        method: "PUT",
+        headers: { 
+        
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+            
+        },
+        
+        body: JSON.stringify(biographyToSend),
+        
+    });
+
+}

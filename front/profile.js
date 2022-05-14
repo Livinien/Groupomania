@@ -7,7 +7,7 @@ const newImage = document.querySelector("#image");
 
 async function profile_img() {
 
-    const avatar = await getAvatar();
+    const avatar = await getProfile();
     
     if(avatar !== null) {
         newImage.src = avatar;
@@ -40,6 +40,7 @@ profile_img();
 
 
 
+
 // AFFICHER L'IMAGE SUR LE SITE //
 
 const displayPicture = document.querySelector("#displayPicture");
@@ -55,13 +56,26 @@ displayPicture.addEventListener("click", (e) => {
 
 
 
+// UPLOADE LE PRÉNOM ET LA DESCRIPTION //
+
+const biography = document.getElementById("displayBiography");
 
 
+biography.addEventListener("click", (e) => {
 
+    e.preventDefault();
 
+    const pseudo = document.getElementById("pseudo").value;
+    const description = document.getElementById("description").value;
 
+    biographyToSend = { pseudo, description };
+    console.log(biographyToSend);
+    
+    sendBiography(biographyToSend);
+    
 
+    return false;
 
-
+});
 
 
