@@ -15,19 +15,36 @@ module.exports = (sequelize, DataType) => {
             allowNull: false,
             unique: true,
         },
-        
+
+       
         email: {
             type: DataType.STRING,
             allowNull: false,
             unique: true,
         },
         
+
         password: {
 
             type: DataType.STRING,
             allowNull: false,
         },
 
+
+        pseudo: {
+            type: DataType.STRING,
+            allowNull: false,
+            unique: true,
+        },
+
+
+        description: {
+            type: DataType.STRING,
+            allowNull: false,
+            unique: true,
+        },
+
+        
         imageUrl: {
 
             type: DataType.STRING,
@@ -35,6 +52,7 @@ module.exports = (sequelize, DataType) => {
         },
 
     });
+
 
     User.associate = (models) => {
 
