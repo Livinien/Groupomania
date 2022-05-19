@@ -15,7 +15,7 @@ signupForm.addEventListener("submit", async (e) => {
         email: document.getElementById("email").value,
         password: document.getElementById("password").value, 
         confirmPassword: document.getElementById("confirmPassword").value 
-    } 
+    }
 
     console.log(user);
     

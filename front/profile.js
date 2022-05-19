@@ -68,3 +68,22 @@ biography.addEventListener("click", (e) => {
     return false;
 
 });
+
+
+
+// SUPPRIMER LE PROFILE DE L'UTILISATEUR //
+
+const deleteAccount = document.getElementById("deleteAccount");
+
+
+deleteAccount.addEventListener("click", (e) => {
+
+    const pseudo = document.getElementById("pseudo").value;
+    const description = document.getElementById("description").value;
+
+
+    localStorage.clear("token");
+
+    window.location.href = "index.html"
+
+})

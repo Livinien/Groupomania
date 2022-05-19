@@ -562,7 +562,7 @@ strong:nth-child(2) {
 
 .card_profile .btn_green {
     display: flex;
-    margin: 20px 70px 20px 100px ;
+    margin: 20px 70px 20px 90px ;
     border: none;
     padding: 9px 32px;
     background-color: #06ac00;
@@ -577,6 +577,19 @@ strong:nth-child(2) {
 }
 
 
+.card_profile .btn_red {
+    display: flex;
+    margin: 80px 20px 20px 74px ;
+    border: none;
+    padding: 9px 32px;
+    background-color: #f00000;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: 0.2s ease-in-out;
+}
 
-
+.card_profile .btn_red:hover {
+    background: #ff2f2f;
+}
 
