@@ -63,21 +63,19 @@ displayPicture.addEventListener("click", (e) => {
 
 // UPLOADE LE PRÉNOM ET LA DESCRIPTION //
 
-const biography = document.getElementById("biography");
+const biography = document.getElementById("displayBiography");
 
-const formData = new FormData(biography)
-
-
-biography.addEventListener("submit", (e) => {
-
+biography.addEventListener("click", (e) => {
     e.preventDefault();
+    const formData = new FormData();
+    const pseudo = document.querySelector("#pseudo").value;
+    const description = document.querySelector("#description").value;
 
-    const profile = sendBiography(formData);
+    formData.append("pseudo", pseudo);
+    formData.append("description", description);
+    formData.append("image", changeImageForm.files[0]);
 
-    console.log(profile);
-
+    sendBiography(formData);
     return false;
 
 });
-
-
