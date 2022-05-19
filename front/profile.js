@@ -46,27 +46,15 @@ profile_img();
 
 
 
-// AFFICHER L'IMAGE SUR LE SITE //
-
-const displayPicture = document.querySelector("#displayPicture");
-
-displayPicture.addEventListener("click", (e) => {
-
-    sendImage(changeImageForm.files[0]);
-
-    return false;
-});
-
-
-
-
 
 // UPLOADE LE PRÉNOM ET LA DESCRIPTION //
 
 const biography = document.getElementById("displayBiography");
 
 biography.addEventListener("click", (e) => {
+
     e.preventDefault();
+    
     const formData = new FormData();
     const pseudo = document.querySelector("#pseudo").value;
     const description = document.querySelector("#description").value;
@@ -76,6 +64,7 @@ biography.addEventListener("click", (e) => {
     formData.append("image", changeImageForm.files[0]);
 
     sendBiography(formData);
+
     return false;
 
 });
