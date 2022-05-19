@@ -12,7 +12,17 @@ exports.getProfile = async (req, res) => {
         const UserId = await jwt.getUserId(req);
         const user = await db.User.findByPk(UserId);
 
-        return res.status(201).json(user.imageUrl, user.pseudo, user.description);
+        console.log(user);
+
+        const userModel =  {
+
+            pseudo : user.pseudo,
+            description : user.description,
+            imageUrl : user.imageUrl,
+
+        }
+
+        return res.status(201).json(userModel);
 
     
     } catch(error) {
@@ -95,14 +105,31 @@ exports.modifyBiography = async (req, res) => {
         const pseudo_description_token = await jwt.getUserId(req);
         const user = await db.User.findByPk(pseudo_description_token);
 
-        
+
         user.pseudo = req.body.pseudo
         user.description = req.body.description
-            
+        
 
+        // REMPLACER L'IMAGE DE PROFILE //
+
+        const hello = user.imageUrl.split('/img_posts/')[1];
+
+        if(hello && hello !== req.file.filename){
+            
+        fs.unlink(`img_posts/${hello}`, (error) => {
+                
+                if(error) {
+
+                    return res.status(404).json({ message: "L'image n'a pas été changée" });
+
+                }
+            });
+        }
+
+        user.imageUrl = req.protocol + '://' + req.get('host') + "/img_posts/" + req.file.filename;
 
         await user.save();
-        
+
         return res.status(201).json({ message: "La biographie de l'utilisateur a bien été envoyé !" });
 
     // }
