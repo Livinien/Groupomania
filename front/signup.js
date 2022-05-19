@@ -5,6 +5,7 @@ const signupForm = document.getElementById("signupForm");
 
 
 signupForm.addEventListener("submit", async (e) => {
+    
     e.preventDefault()
 
     const user = { 
