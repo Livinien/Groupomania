@@ -143,3 +143,25 @@ exports.modifyBiography = async (req, res) => {
     }
 
 }
+
+
+
+
+
+// SUPPRIMER LE PROFILE DE L'UTILISATEUR //
+
+
+exports.deleteAccount = async (req, res) => {
+
+    try {
+
+
+    }
+
+
+    catch(error) {
+
+        return res.status(500).json({ message: error.message });
+    }
+
+}

@@ -14,13 +14,17 @@ exports.signup = async (req, res) => {
         const lastname = req.body.lastname;
         const email = req.body.email;
         const imageUrl = ''
+        const pseudo = ''
+        const description = ''
         let password = req.body.password;
         let user = await db.User.findOne({ where: {
 
             firstname,
             lastname,
             email,
-            imageUrl
+            imageUrl,
+            pseudo,
+            description
         }
 
     });
@@ -42,7 +46,9 @@ exports.signup = async (req, res) => {
             lastname,
             email,
             password,
-            imageUrl
+            imageUrl,
+            pseudo,
+            description
             
 
 
