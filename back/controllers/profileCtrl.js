@@ -100,7 +100,7 @@ exports.postImage = async (req, res) => {
 
 exports.modifyBiography = async (req, res) => {
 
-    // try {
+    try {
       
         const pseudo_description_token = await jwt.getUserId(req);
         const user = await db.User.findByPk(pseudo_description_token);
@@ -109,6 +109,7 @@ exports.modifyBiography = async (req, res) => {
         user.pseudo = req.body.pseudo
         user.description = req.body.description
         
+
 
         // REMPLACER L'IMAGE DE PROFILE //
 
@@ -128,16 +129,17 @@ exports.modifyBiography = async (req, res) => {
 
         user.imageUrl = req.protocol + '://' + req.get('host') + "/img_posts/" + req.file.filename;
 
+        
         await user.save();
 
         return res.status(201).json({ message: "La biographie de l'utilisateur a bien été envoyé !" });
 
-    // }
+    }
 
 
-    // catch(error) {
+    catch(error) {
 
-    //     return res.status(500).json({ message: error.message });
-    // }
+        return res.status(500).json({ message: error.message });
+    }
 
 }
