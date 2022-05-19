@@ -113,11 +113,11 @@ exports.modifyBiography = async (req, res) => {
 
         // REMPLACER L'IMAGE DE PROFILE //
 
-        const hello = user.imageUrl.split('/img_posts/')[1];
+        const replacePicture = user.imageUrl.split('/img_posts/')[1];
 
-        if(hello && hello !== req.file.filename){
+        if(replacePicture && replacePicture !== req.file.filename){
             
-        fs.unlink(`img_posts/${hello}`, (error) => {
+        fs.unlink(`img_posts/${replacePicture}`, (error) => {
                 
                 if(error) {
 
