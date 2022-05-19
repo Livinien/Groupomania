@@ -7,10 +7,15 @@ const newImage = document.querySelector("#image");
 
 async function profile_img() {
 
-    const avatar = await getProfile();
+    const avatar = await getProfile(pseudo, description);
     
     if(avatar !== null) {
-        newImage.src = avatar;
+        newImage.src = avatar.imageUrl;
+        
+        document.querySelector("#pseudo").value = avatar.pseudo;
+        document.querySelector("#description").value = avatar.description;
+
+        console.log(avatar);
     }
     
     changeImageForm.addEventListener('change', () => {
@@ -58,21 +63,18 @@ displayPicture.addEventListener("click", (e) => {
 
 // UPLOADE LE PRÉNOM ET LA DESCRIPTION //
 
-const biography = document.getElementById("displayBiography");
+const biography = document.getElementById("biography");
+
+const formData = new FormData(biography)
 
 
-biography.addEventListener("click", (e) => {
+biography.addEventListener("submit", (e) => {
 
     e.preventDefault();
 
-    const pseudo = document.getElementById("pseudo").value;
-    const description = document.getElementById("description").value;
+    const profile = sendBiography(formData);
 
-    biographyToSend = { pseudo, description };
-    console.log(biographyToSend);
-    
-    sendBiography(biographyToSend);
-    
+    console.log(profile);
 
     return false;
 
