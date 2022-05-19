@@ -13,7 +13,9 @@ exports.createPost = async (req, res) => {
     post.imageUrl = req.file.filename;
     post.UserId = await jwt.getUserId(req);
 
+
     try {
+    
         await db.Post.create(post);
         return res.status(201).json({ message: "Post Ajouté !"});
     } catch {
@@ -27,7 +29,16 @@ exports.createPost = async (req, res) => {
 // AFFICHER TOUS LES POSTS //
 
 exports.getAllPost = async (req, res) => {
-    return res.status(200).json(await db.Post.findAll())
+
+    const allPosts = await db.Post.findAll({
+
+        order: [
+            ['createdAt', 'DESC'],
+        ]
+        
+    })
+    
+    return res.status(200).json(allPosts)
 }
 
 
