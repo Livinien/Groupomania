@@ -412,12 +412,11 @@ async function sendBiography(biographyToSend) {
         method: "PUT",
         headers: { 
         
-            "Content-Type": "application/json",
             Authorization: "Bearer " + token,
             
         },
-        
-        body: JSON.stringify(biographyToSend),
+    
+        body : biographyToSend
         
     });
 
