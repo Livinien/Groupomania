@@ -148,8 +148,8 @@ exports.modifyBiography = async (req, res) => {
 
 
 
-// SUPPRIMER LE PROFILE DE L'UTILISATEUR //
 
+// SUPPRIMER LE PROFILE DE L'UTILISATEUR //
 
 exports.deleteAccount = async (req, res) => {
 
