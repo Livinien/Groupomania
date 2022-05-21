@@ -213,7 +213,7 @@ form {
 
 
 .post button {
-    margin: 20px 160px 30px;
+    margin: 40px 140px 30px;
     padding: 10px 40px;
     border-radius: 5px;
     border: none;
@@ -593,3 +593,67 @@ strong:nth-child(2) {
     background: #ff2f2f;
 }
 
+
+.doorDelete {
+    position: absolute;
+    top: 124px;
+    right: 0px;
+    background:rgb(100, 100, 100);
+    width: 100%;
+    height: 110%; 
+    opacity: 90%;
+    cursor: auto;
+}
+
+
+.messageDeleteProfile {
+    position: absolute;
+    top: 600px;
+    right: 12px;
+    width: 95%;
+    font-weight: bold;
+    font-size: 20px;
+    padding: 20px;
+    color: #000;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 1000;
+    cursor: auto;
+}
+
+
+.buttonSuppressionProfile_1 {
+    margin: 40px 140px 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    border: none;
+    background: #005dff;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.buttonSuppressionProfile_1:hover {
+    background: #fb0000;
+}
+
+
+
+.buttonSuppressionProfile_2 {
+    margin: 40px 140px 30px;
+    padding: 10px 40px;
+    border-radius: 5px;
+    border: none;
+    background: #005dff;
+    color: #fff;
+    font-weight: bold;
+    transition: 0.2s ease-in-out;
+    z-index: 100;
+    cursor: pointer;
+}
+
+.buttonSuppressionProfile_2:hover {
+    background: #3e83fb;
+}

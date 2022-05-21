@@ -425,3 +425,35 @@ async function sendBiography(biographyToSend) {
     });
 
 }
+
+
+
+// SUPPRESSION DU PROFILE DE L'UTILISATEUR //
+
+async function deleteProfile() {
+
+    return fetch("http://localhost:3001/api/profile", {
+
+
+        method: "DELETE",
+        headers: { 
+            
+            "Content-Type": "application/json",
+            "Accept": "application/json",
+            "Authorization": `Bearer ${Authentification.getToken()}`
+        
+        },
+            
+    })
+
+    .then(res => {
+
+        if(res.ok) {
+
+            return res.json();
+
+        }
+        
+    })
+    
+}

@@ -71,19 +71,103 @@ biography.addEventListener("click", (e) => {
 
 
 
+
 // SUPPRIMER LE PROFILE DE L'UTILISATEUR //
 
-const deleteAccount = document.getElementById("deleteAccount");
+
+const deleteAccount = () => {
 
 
-deleteAccount.addEventListener("click", (e) => {
+    const deleteUser = document.querySelector('#deleteAccount');
 
-    const pseudo = document.getElementById("pseudo").value;
-    const description = document.getElementById("description").value;
+    const windowDeleteProfile = document.createElement('div');
+        windowDeleteProfile.classList.add('doorDelete');
+        windowDeleteProfile.style.display = "none";
+    
+    deleteUser.appendChild(windowDeleteProfile);
+    
+    
+    const messageDeleteProfile = document.createElement('div');
+        messageDeleteProfile.classList.add('messageDeleteProfile');
+        messageDeleteProfile.style.display = "none";
+    
+    deleteUser.appendChild(messageDeleteProfile);
+    
+    
+    
+    const titleDeleteProfile = document.createElement('div');
+        titleDeleteProfile.classList.add('titleDeleteProfile');
+        titleDeleteProfile.style.display = "none";
+        titleDeleteProfile.textContent = `Êtes-vous sur de vouloir supprimer votre profile ?`;
+    
+    messageDeleteProfile.appendChild(titleDeleteProfile);
+    
 
 
-    localStorage.clear("token");
+    
+    const buttonSuppressionProfile_1 = document.createElement('div');
+        buttonSuppressionProfile_1.classList.add('buttonSuppressionProfile_1');
+        buttonSuppressionProfile_1.style.display = "none";
+        buttonSuppressionProfile_1.textContent = `Oui`;
+    
+    messageDeleteProfile.appendChild(buttonSuppressionProfile_1);
+    
+    
+    
+    const buttonSuppressionProfile_2 = document.createElement('div');
+        buttonSuppressionProfile_2.classList.add('buttonSuppressionProfile_2');
+        buttonSuppressionProfile_2.style.display = "none";
+        buttonSuppressionProfile_2.textContent = `Annuler`;
+    
+    messageDeleteProfile.appendChild(buttonSuppressionProfile_2);
 
-    window.location.href = "index.html"
+    
 
-})
+
+    deleteUser.addEventListener('click', (e) => {
+        windowDeleteProfile.style.display = "block";
+        messageDeleteProfile.style.display = "block";
+        titleDeleteProfile.style.display = "block";
+        buttonSuppressionProfile_1.style.display = "block";
+        buttonSuppressionProfile_2.style.display = "block";
+    });
+    
+
+
+    buttonSuppressionProfile_2.addEventListener('click', (e) => {
+        windowDeleteProfile.style.display = "none";
+        messageDeleteProfile.style.display = "none";
+        titleDeleteProfile.style.display = "none";
+        
+    });
+    
+
+    
+
+    return deleteUser;
+
+
+}
+
+deleteAccount();
+
+
+
+
+
+// const deleteAccount = document.getElementById("deleteAccount");
+
+
+// deleteAccount.addEventListener("click", (e) => {
+
+//     const pseudo = document.getElementById("pseudo").value;
+//     const description = document.getElementById("description").value;
+
+
+//     deleteProfile()
+
+//     localStorage.clear("token");
+
+//     window.location.href = "index.html"
+
+// })
