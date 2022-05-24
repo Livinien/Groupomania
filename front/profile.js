@@ -83,14 +83,14 @@ const deleteAccount = () => {
     const windowDeleteProfile = document.createElement('div');
         windowDeleteProfile.classList.add('doorDelete');
         windowDeleteProfile.style.display = "none";
-    
+
     deleteUser.appendChild(windowDeleteProfile);
     
     
     const messageDeleteProfile = document.createElement('div');
         messageDeleteProfile.classList.add('messageDeleteProfile');
         messageDeleteProfile.style.display = "none";
-    
+
     deleteUser.appendChild(messageDeleteProfile);
     
     
@@ -99,7 +99,7 @@ const deleteAccount = () => {
         titleDeleteProfile.classList.add('titleDeleteProfile');
         titleDeleteProfile.style.display = "none";
         titleDeleteProfile.textContent = `Êtes-vous sur de vouloir supprimer votre profile ?`;
-    
+
     messageDeleteProfile.appendChild(titleDeleteProfile);
     
 
@@ -109,7 +109,7 @@ const deleteAccount = () => {
         buttonSuppressionProfile_1.classList.add('buttonSuppressionProfile_1');
         buttonSuppressionProfile_1.style.display = "none";
         buttonSuppressionProfile_1.textContent = `Oui`;
-    
+
     messageDeleteProfile.appendChild(buttonSuppressionProfile_1);
     
     
@@ -118,12 +118,12 @@ const deleteAccount = () => {
         buttonSuppressionProfile_2.classList.add('buttonSuppressionProfile_2');
         buttonSuppressionProfile_2.style.display = "none";
         buttonSuppressionProfile_2.textContent = `Annuler`;
-    
+
     messageDeleteProfile.appendChild(buttonSuppressionProfile_2);
 
     
 
-
+    
     deleteUser.addEventListener('click', (e) => {
         windowDeleteProfile.style.display = "block";
         messageDeleteProfile.style.display = "block";
@@ -132,17 +132,16 @@ const deleteAccount = () => {
         buttonSuppressionProfile_2.style.display = "block";
     });
     
-
-
+    
     buttonSuppressionProfile_2.addEventListener('click', (e) => {
         windowDeleteProfile.style.display = "none";
         messageDeleteProfile.style.display = "none";
         titleDeleteProfile.style.display = "none";
-        
+        buttonSuppressionProfile_1.style.display = "none";
+        buttonSuppressionProfile_2.style.display = "none";
     });
     
 
-    
 
     return deleteUser;
 
