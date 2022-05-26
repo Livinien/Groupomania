@@ -9,11 +9,6 @@ const multer = require('../middleware/multer-config');
 
 router.post("/", auth, multer, profileCtrl.postImage);
 router.get("/", auth, profileCtrl.getProfile);
-
-
-
-// ROUTES POUR POSTER LE PRÉNOM ET LA DESCRIPTION //
-
 router.put("/", auth, multer, profileCtrl.modifyBiography);
 
 
