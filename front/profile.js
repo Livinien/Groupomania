@@ -17,10 +17,11 @@ async function profile_img() {
 
         console.log(avatar);
     }
+
+    
     
     changeImageForm.addEventListener('change', () => {
         
-
         if(changeImageForm.files && changeImageForm.files[0]) {
     
             // FileReader() permet d'afficher l'image une fois sélectionner //
@@ -125,22 +126,27 @@ const deleteAccount = () => {
 
     
     deleteUser.addEventListener('click', (e) => {
+        e.stopPropagation();
+        
         windowDeleteProfile.style.display = "block";
         messageDeleteProfile.style.display = "block";
         titleDeleteProfile.style.display = "block";
         buttonSuppressionProfile_1.style.display = "block";
         buttonSuppressionProfile_2.style.display = "block";
+
     });
+
     
     
     buttonSuppressionProfile_2.addEventListener('click', (e) => {
+        e.stopPropagation();
+
         windowDeleteProfile.style.display = "none";
         messageDeleteProfile.style.display = "none";
         titleDeleteProfile.style.display = "none";
         buttonSuppressionProfile_1.style.display = "none";
         buttonSuppressionProfile_2.style.display = "none";
     });
-    
 
 
     return deleteUser;
