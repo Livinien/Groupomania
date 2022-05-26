@@ -134,3 +134,46 @@ exports.getPostsLiked = async (req, res) => {
 
 
 
+
+
+// SUPPRIMER LE PROFILE DE L'UTILISATEUR //
+
+exports.deleteAccount = async (req, res) => {
+
+    try {
+
+        const request = await db.User.findByPk(req.params.id);
+            
+        if(request) {
+            const userId = jwt.getUserId(req);
+            console.log(userId);
+            
+            if(userId.toString() === req.params.id) {
+        
+                await request.destroy();
+
+
+                return res.status(200).json({ message: "L'utilisateur a bien été supprimé" });
+            
+            }
+            
+            return res.status(404).json({ message: "Utilisateur non trouvé" });
+            
+        }
+        
+
+        return res.status(404).json({ message: "Utilisateur manquant" });
+
+        
+
+    }
+
+    catch(error) {
+
+        return res.status(500).json({ message: error.message });
+    }
+
+}
+
+
+
