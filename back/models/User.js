@@ -83,8 +83,6 @@ module.exports = (sequelize, DataType) => {
             onUpdate: "CASCADE",
         })
 
-        
-
     }
 
     return User;
