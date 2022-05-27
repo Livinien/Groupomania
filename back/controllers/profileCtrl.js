@@ -117,7 +117,7 @@ exports.modifyBiography = async (req, res) => {
 
         if(replacePicture && replacePicture !== req.file.filename){
             
-        fs.unlink(`img_posts/${replacePicture}`, (error) => {
+            fs.unlink(`img_posts/${replacePicture}`, (error) => {
                 
                 if(error) {
 
@@ -135,6 +135,7 @@ exports.modifyBiography = async (req, res) => {
         return res.status(201).json({ message: "La biographie de l'utilisateur a bien été envoyé !" });
 
     }
+
 
 
     catch(error) {

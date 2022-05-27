@@ -2,6 +2,8 @@
 const db = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("../middleware/jwt");
+const fs = require('fs');
+
 
 
 // S'INSCRIRE //
@@ -143,28 +145,33 @@ exports.deleteAccount = async (req, res) => {
     try {
 
         const request = await db.User.findByPk(req.params.id);
-            
+        const image = request.imageUrl.split('/img_posts/')[1];
+    
+        
         if(request) {
             const userId = jwt.getUserId(req);
-            console.log(userId);
-            
+
             if(userId.toString() === req.params.id) {
         
+                fs.unlink(`img_posts/${image}`, (error) => {
+                
+                    if(error) {
+    
+                        return res.status(404).json({ message: "L'image a bien été supprimé" });
+    
+                    }
+                });
+
                 await request.destroy();
-
-
-                return res.status(200).json({ message: "L'utilisateur a bien été supprimé" });
-            
+                
+                return res.status(404).json({ message: "Utilisateur non trouvé" });
             }
             
-            return res.status(404).json({ message: "Utilisateur non trouvé" });
+            return res.status(200).json({ message: "L'utilisateur a bien été supprimé" });
             
         }
         
-
         return res.status(404).json({ message: "Utilisateur manquant" });
-
-        
 
     }
 
