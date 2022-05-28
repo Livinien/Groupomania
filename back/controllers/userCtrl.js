@@ -144,34 +144,24 @@ exports.deleteAccount = async (req, res) => {
 
     try {
 
-        const request = await db.User.findByPk(req.params.id);
-        const image = request.imageUrl.split('/img_posts/')[1];
+        const userId = jwt.getUserId(req);
+        const user = await db.User.findByPk(userId);
+        const image = user.imageUrl.split('/img_posts/')[1];
     
-        
-        if(request) {
-            const userId = jwt.getUserId(req);
 
-            if(userId.toString() === req.params.id) {
-        
-                fs.unlink(`img_posts/${image}`, (error) => {
-                
-                    if(error) {
-    
-                        return res.status(404).json({ message: "L'image a bien été supprimé" });
-    
-                    }
-                });
+            fs.unlink(`img_posts/${image}`, (error) => {
+            
+                if(error) {
+                    console.log(error);
+                    return res.status(404).json({ message: "L'image a bien été supprimé" });
 
-                await request.destroy();
-                
-                return res.status(404).json({ message: "Utilisateur non trouvé" });
-            }
+                }
+            });
+
+            await user.destroy();
             
             return res.status(200).json({ message: "L'utilisateur a bien été supprimé" });
             
-        }
-        
-        return res.status(404).json({ message: "Utilisateur manquant" });
 
     }
 
