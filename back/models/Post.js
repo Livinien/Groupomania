@@ -36,7 +36,7 @@ module.exports = (sequelize, DataType) => {
             },  
             
             //ON DELETE = Que fais la ligne en cas de suppression du propriétaire ? (ici User)
-            oneDelete: "SET NULL", 
+            onDelete: "SET NULL", 
             //ON UPDATE = Que fais la ligne en cas de modification du propriétaire ? (ici User)
             //SET NULL = Remplacer l'id du propriétaire par NULL
             //CASCADE = Appliquer les changement du propriétaire sur la ligne (En cas d'update on met à jour et ATTENTION en cas de suppression on supprime la ligne)
@@ -49,7 +49,7 @@ module.exports = (sequelize, DataType) => {
                 allowNull: true,
 
             },  
-            oneDelete: "SET NULL", 
+            onDelete: "SET NULL", 
             onUpdate: "CASCADE",
         });
 

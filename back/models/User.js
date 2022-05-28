@@ -61,7 +61,7 @@ module.exports = (sequelize, DataType) => {
                 allowNull: true,
 
             },  
-            oneDelete: "CASCADE", 
+            onDelete: "CASCADE", 
             onUpdate: "CASCADE",
         }),
 
@@ -70,7 +70,7 @@ module.exports = (sequelize, DataType) => {
                 allowNull: true,
 
             },  
-            oneDelete: "CASCADE", 
+            onDelete: "CASCADE", 
             onUpdate: "CASCADE",
         })
 
@@ -79,7 +79,7 @@ module.exports = (sequelize, DataType) => {
                 allowNull: true,
 
             },  
-            oneDelete: "CASCADE", 
+            onDelete: "CASCADE", 
             onUpdate: "CASCADE",
         })
 
