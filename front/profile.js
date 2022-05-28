@@ -160,10 +160,10 @@ deleteAccount();
 
 
 
-// const deleteAccount = document.getElementById("deleteAccount");
+// const deleteUser = document.getElementById("deleteAccount");
 
 
-// deleteAccount.addEventListener("click", (e) => {
+// deleteUser.addEventListener("click", (e) => {
 
 //     const pseudo = document.getElementById("pseudo").value;
 //     const description = document.getElementById("description").value;
