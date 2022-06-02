@@ -74,5 +74,6 @@ server.on('listening', () => {
 // db.sequelize.sync({ force: true });
 // db.sequelize.sync({ alter: true });
 
+// db.sequelize.sync();
 
 server.listen(port);
