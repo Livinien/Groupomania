@@ -10,7 +10,7 @@ const multer = require('../middleware/multer-config');
 router.post("/", auth, multer, profileCtrl.postImage);
 router.get("/", auth, profileCtrl.getProfile);
 router.put("/", auth, multer, profileCtrl.modifyBiography);
-
+router.delete("/", profileCtrl.deleteAccount);
 
 
 
