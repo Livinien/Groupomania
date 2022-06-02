@@ -2,7 +2,7 @@
 const db = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("../middleware/jwt");
-const fs = require('fs');
+
 
 
 
@@ -57,7 +57,7 @@ exports.signup = async (req, res) => {
         });
 
         const token = jwt.generateToken(user);
-        return res.status(200).json({ token, message: "Utilisateur Créer" });
+        return res.status(200).json({ token, userId: user.id, message: "Utilisateur Créer" });
 
 
 
@@ -138,39 +138,6 @@ exports.getPostsLiked = async (req, res) => {
 
 
 
-// SUPPRIMER LE PROFILE DE L'UTILISATEUR //
-
-exports.deleteAccount = async (req, res) => {
-
-    try {
-
-        const userId = jwt.getUserId(req);
-        const user = await db.User.findByPk(userId);
-        const image = user.imageUrl.split('/img_posts/')[1];
-    
-
-            fs.unlink(`img_posts/${image}`, (error) => {
-            
-                if(error) {
-                    console.log(error);
-                    return res.status(404).json({ message: "L'image a bien été supprimé" });
-
-                }
-            });
-
-            await user.destroy();
-            
-            return res.status(200).json({ message: "L'utilisateur a bien été supprimé" });
-            
-
-    }
-
-    catch(error) {
-
-        return res.status(500).json({ message: error.message });
-    }
-
-}
 
 
 

@@ -149,4 +149,64 @@ exports.modifyBiography = async (req, res) => {
 
 
 
+// SUPPRIMER LE PROFILE DE L'UTILISATEUR //
+
+exports.deleteAccount = async (req, res) => {
+
+    try {
+
+        const userId = jwt.getUserId(req);
+        const user = await db.User.findByPk(userId);
+        const image = user.imageUrl.split('/img_posts/')[1];
+
+        console.log(image);
+
+
+            // Supprimer totalement l'image de profile de l'utilisateur //
+
+            fs.unlink(`img_posts/${image}`, (error) => {
+            
+                if(error) {
+                    console.log(error);
+                    return res.status(404).json({ message: "L'image de profile a bien été supprimé" });
+
+                }
+            });
+
+
+            // Supprimer totalement les images des posts mis en ligne par l'utilisateur //
+
+            const deletePictures = await db.Post.findAll({
+                
+                where : {
+                    userId : userId
+                } 
+            });
+            console.log(deletePictures);
+
+            
+
+            fs.unlink(`img_posts/${image}}`, (error) => {
+            
+                if(error) {
+                    console.log(error);
+                    return res.status(404).json({ message: "Les images des posts ont bien tous été supprimé" });   
+                }
+            });
+              
+
+            await user.destroy();
+            
+            return res.status(200).json({ message: "L'utilisateur a bien été supprimé" });
+
+    }
+
+    catch(error) {
+
+        return res.status(500).json({ message: error.message });
+    }
+
+}
+
+
 

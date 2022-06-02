@@ -15,7 +15,6 @@ exports.createPost = async (req, res) => {
 
 
     try {
-    
         await db.Post.create(post);
         return res.status(201).json({ message: "Post Ajouté !"});
     } catch {
