@@ -75,7 +75,6 @@ biography.addEventListener("click", (e) => {
 
 // SUPPRIMER LE PROFILE DE L'UTILISATEUR //
 
-
 const deleteAccount = () => {
 
 
@@ -151,7 +150,6 @@ const deleteAccount = () => {
 
     return deleteUser;
 
-
 }
 
 deleteAccount();
@@ -160,19 +158,23 @@ deleteAccount();
 
 
 
-// const deleteUser = document.getElementById("deleteAccount");
+
+// SUPPRIMER LE PROFILE DEFINITIVEMENT DE LA BDD - 
+// SUPPRESSION DES COMMENTAIRES, DES LIKES, DES POSTS //
 
 
-// deleteUser.addEventListener("click", (e) => {
 
-//     const pseudo = document.getElementById("pseudo").value;
-//     const description = document.getElementById("description").value;
+const deleteUser = document.querySelector(".buttonSuppressionProfile_1");
 
 
-//     deleteProfile()
+deleteUser.addEventListener("click", (e) => {
 
-//     localStorage.clear("token");
+    deleteProfile()
 
-//     window.location.href = "index.html"
 
-// })
+    localStorage.clear("token");
+
+    window.location.href = "index.html"
+
+})
+
