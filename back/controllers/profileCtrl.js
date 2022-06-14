@@ -9,8 +9,8 @@ exports.getProfile = async (req, res) => {
 
     try {
 
-        const UserId = await jwt.getUserId(req);
-        const user = await db.User.findByPk(UserId);
+        const userId = await jwt.getUserId(req);
+        const user = await db.user.findByPk(userId);
 
         console.log(user);
 
@@ -44,7 +44,7 @@ exports.postImage = async (req, res) => {
 
 
         // UPLOADER L'IMAGE DE PROFILE //
-        const profileForm = await db.User.findByPk(userId);
+        const profileForm = await db.user.findByPk(userId);
 
         if(profileForm.id === null) {
             return res.status(404).json({ error: "L'avatar est introuvable"});
@@ -103,7 +103,7 @@ exports.modifyBiography = async (req, res) => {
     try {
       
         const pseudo_description_token = await jwt.getUserId(req);
-        const user = await db.User.findByPk(pseudo_description_token);
+        const user = await db.user.findByPk(pseudo_description_token);
 
 
         user.pseudo = req.body.pseudo
@@ -156,26 +156,30 @@ exports.deleteAccount = async (req, res) => {
     try {
 
         const userId = jwt.getUserId(req);
-        const user = await db.User.findByPk(userId);
-        const image = user.imageUrl.split('/img_posts/')[1];
+        const user = await db.user.findByPk(userId);
+        const imageProfile = user.imageUrl.split('/img_posts/')[1];
 
-        console.log(image);
+        console.log(imageProfile);
+
+            if(imageProfile) {
 
 
-            // Supprimer totalement l'image de profile de l'utilisateur //
-
-            fs.unlink(`img_posts/${image}`, (error) => {
-            
-                if(error) {
-                    console.log(error);
-                    return res.status(404).json({ message: "L'image de profile a bien été supprimé" });
-
-                }
-            });
+                // Supprimer totalement l'image de profile de l'utilisateur //
+    
+                fs.unlink(`img_posts/${imageProfile}`, (error) => {
+                
+                    if(error) {
+                        console.log(error);
+                        return res.status(404).json({ message: "L'image de profile a bien été supprimé" });
+    
+                    }
+                });
+            }
 
 
             // Supprimer totalement les images des posts mis en ligne par l'utilisateur //
 
+            // Récupérer toutes les images des posts //
             const deletePictures = await db.Post.findAll({
                 
                 where : {
@@ -185,15 +189,21 @@ exports.deleteAccount = async (req, res) => {
             console.log(deletePictures);
 
             
+            // Pour chaque image (forEach), tu me les supprimes avec le fs.unlink //
+            const imagePosts = deletePictures.map(picture => picture.imageUrl)
 
-            fs.unlink(`img_posts/${image}}`, (error) => {
-            
-                if(error) {
-                    console.log(error);
-                    return res.status(404).json({ message: "Les images des posts ont bien tous été supprimé" });   
-                }
+            imagePosts.forEach(imagePost => {
+                console.log(imagePost);
+
+                fs.unlink(`img_posts/${imagePost}`, (error) => {
+                
+                    if(error) {
+                        console.log(error);
+                         
+                    }
+                });
+                  
             });
-              
 
             await user.destroy();
             

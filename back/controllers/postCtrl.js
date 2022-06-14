@@ -52,7 +52,7 @@ exports.modifyPost = async (req, res) => {
 
         const modifiedPost = JSON.parse(req.body.post);
         modifiedPost.imageUrl = req.file.filename;
-        const userId = await jwt.getUserId(req);
+        const userIdModifyPost = await jwt.getUserId(req);
         
         const post = await db.Post.findByPk(req.params.id);
         
@@ -60,7 +60,7 @@ exports.modifyPost = async (req, res) => {
             return res.status(404).json({ error: "article introuvable"});
         }
 
-        if(post.UserId != userId) {
+        if(post.UserId != userIdModifyPost) {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
         }
 
@@ -98,9 +98,9 @@ exports.deletePost = async (req, res) => {
 
     try {
         const post = await db.Post.findByPk(req.params.id);
-        const userId = await jwt.getUserId(req);
+        const userIdDeletePost = await jwt.getUserId(req);
         
-        if(post.UserId != userId) {
+        if(post.UserId != userIdDeletePost) {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
         }
 
@@ -161,12 +161,12 @@ exports.likedPost = async (req, res) => {
     // Sur quel post on est ?
     const PostId = req.params.id;
     // Qui veut liker ?
-    const UserId = await jwt.getUserId(req);
+    const userId = await jwt.getUserId(req);
     // Existe-t-il un like ?
     let liked = await db.Like.findOne({
         where: {
             PostId, // quoi
-            UserId, // qui
+            userId, // qui
         },
     });
     // Si oui
