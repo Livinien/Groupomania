@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, DataType) => {
 
-    const User = sequelize.define("User",  {
+    const user = sequelize.define("User",  {
 
         firstname: {
             type: DataType.STRING,
@@ -10,6 +10,7 @@ module.exports = (sequelize, DataType) => {
             unique: true,
         },
 
+        
         lastname: {
             type: DataType.STRING,
             allowNull: false,
@@ -51,12 +52,13 @@ module.exports = (sequelize, DataType) => {
             allowNull: false,
         },
 
+       
     });
 
 
-    User.associate = (models) => {
+    user.associate = (models) => {
 
-        User.hasMany(models.Post, { 
+        user.hasMany(models.Post, { 
             foreignKey: {
                 allowNull: true,
 
@@ -65,7 +67,7 @@ module.exports = (sequelize, DataType) => {
             onUpdate: "CASCADE",
         }),
 
-        User.hasMany(models.Comment, { 
+        user.hasMany(models.Comment, { 
             foreignKey: {
                 allowNull: true,
 
@@ -74,7 +76,7 @@ module.exports = (sequelize, DataType) => {
             onUpdate: "CASCADE",
         })
 
-        User.hasMany(models.Like, { 
+        user.hasMany(models.Like, { 
             foreignKey: {
                 allowNull: true,
 
@@ -85,7 +87,7 @@ module.exports = (sequelize, DataType) => {
 
     }
 
-    return User;
+    return user;
 
 };
 
