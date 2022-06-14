@@ -397,7 +397,7 @@ async function sendImage(file) {
     });
 
     const json = await res.json();
-    return json.User;
+    return json.user;
 
 }
 

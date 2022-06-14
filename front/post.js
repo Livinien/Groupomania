@@ -81,9 +81,9 @@ const createPost = (post) => {
 
     // (AVEC LA CONDITION "IF") SEUL L'AUTEUR DU POST PEUT SUPPRIMER SON OU SES POST(S) //
     
-    const UserId = localStorage.getItem("userId");
+    const userId = localStorage.getItem("userId");
 
-    if(UserId == post.UserId) {
+    if(userId == post.UserId) {
 
 
         // SUPPRIMER ET MODIFIER LE POST //
