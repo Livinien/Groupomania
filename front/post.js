@@ -33,7 +33,7 @@ const createComment = (comment) => {
     const com = document.createElement('div');
     
     const author = document.createElement('strong');
-    author.textContent = comment.User.firstname;
+    author.textContent = comment.user.firstname;
 
     com.appendChild(author);
 
@@ -82,8 +82,10 @@ const createPost = (post) => {
     // (AVEC LA CONDITION "IF") SEUL L'AUTEUR DU POST PEUT SUPPRIMER SON OU SES POST(S) //
     
     const userId = localStorage.getItem("userId");
+    const isAdmin = JSON.parse(localStorage.getItem("isAdmin"));
 
-    if(userId == post.UserId) {
+    
+    if(userId == post.userId || isAdmin) {
 
 
         // SUPPRIMER ET MODIFIER LE POST //

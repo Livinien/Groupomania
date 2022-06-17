@@ -84,6 +84,7 @@ loginForm.addEventListener("submit", async (e) => {
 
             localStorage.setItem("token", json.token)
             localStorage.setItem("userId", json.userId)
+            localStorage.setItem("isAdmin", JSON.stringify(json.isAdmin))
             window.location.href = "post.html";
 
         } else {
