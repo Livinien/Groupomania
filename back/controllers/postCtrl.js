@@ -11,7 +11,7 @@ exports.createPost = async (req, res) => {
     
     const post = JSON.parse(req.body.post);
     post.imageUrl = req.file.filename;
-    post.UserId = await jwt.getUserId(req);
+    post.userId = await jwt.getUserId(req);
 
 
     try {
@@ -52,27 +52,32 @@ exports.modifyPost = async (req, res) => {
 
         const modifiedPost = JSON.parse(req.body.post);
         modifiedPost.imageUrl = req.file.filename;
-        const userIdModifyPost = await jwt.getUserId(req);
+        const userId = await jwt.getUserId(req);
         
         const post = await db.Post.findByPk(req.params.id);
+        const user = await db.user.findByPk(userId);
         
         if(post === null) {
             return res.status(404).json({ error: "article introuvable"});
         }
 
-        if(post.UserId != userIdModifyPost) {
-            return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
-        }
 
+        if(post.userId != userId && !user.admin) {
+            return res.status(403).json({ error: "Vous n'êtes pas authorisé à modifier/supprimer tous les posts" });
+        }
+        
         
         
         // SUPPRIMER L'IMAGE //
 
         fs.unlink(`img_posts/${post.imageUrl}`, async (error) => {
             
+            // Modifier tout le contenu du post //
             post.title = modifiedPost.title
             post.content = modifiedPost.content
             post.imageUrl = modifiedPost.imageUrl
+            
+            user.admin = modifiedPost.admin
     
             await post.save();
     
@@ -100,7 +105,7 @@ exports.deletePost = async (req, res) => {
         const post = await db.Post.findByPk(req.params.id);
         const userIdDeletePost = await jwt.getUserId(req);
         
-        if(post.UserId != userIdDeletePost) {
+        if(post.userId != userIdDeletePost) {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
         }
 
@@ -127,12 +132,12 @@ exports.likePost = async (req, res) => {
     // Sur quel post on est ?
     const PostId = req.params.id;
     // Qui veut liker ?
-    const UserId = await jwt.getUserId(req);
+    const userId = await jwt.getUserId(req);
     // Existe-t-il un like ?
     let like = await db.Like.findOne({
         where: {
             PostId, // quoi
-            UserId, // qui
+            userId, // qui
         },
     });
     // Si oui
@@ -146,7 +151,7 @@ exports.likePost = async (req, res) => {
     // Je le crée
     like = await db.Like.create({
         PostId, // quoi
-        UserId, // qui
+        userId, // qui
     });
     // Et je stop la requête
     return res.status(201).json(true);

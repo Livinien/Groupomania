@@ -19,7 +19,7 @@ exports.signup = async (req, res) => {
         const pseudo = ''
         const description = ''
         let password = req.body.password;
-        let user = await db.User.findOne({ where: {
+        let user = await db.user.findOne({ where: {
 
             firstname,
             lastname,
@@ -42,7 +42,7 @@ exports.signup = async (req, res) => {
 
         password = await bcrypt.hash(password, 5);
 
-        user = await db.User.create({
+        user = await db.user.create({
 
             firstname,
             lastname,
@@ -50,14 +50,15 @@ exports.signup = async (req, res) => {
             password,
             imageUrl,
             pseudo,
-            description
+            description,
+            admin : false
             
 
 
         });
 
         const token = jwt.generateToken(user);
-        return res.status(200).json({ token, userId: user.id, message: "Utilisateur Créer" });
+        return res.status(200).json({ token, userId: user.id, isAdmin: user.admin, message: "Utilisateur Créer" });
 
 
 
@@ -79,7 +80,7 @@ exports.login = async (req,res) => {
 
         const email = req.body.email;
         const password = req.body.password;
-        let User = await db.User.findOne({
+        let user = await db.user.findOne({
 
             where:{
 
@@ -89,13 +90,13 @@ exports.login = async (req,res) => {
 
     });
 
-        if(!User) {
+        if(!user) {
 
             return res.status(400).json( { error: "Utilisateur Inexistant"});
 
         }
 
-        const isCorrectPassword = await bcrypt.compare(password, User.password);
+        const isCorrectPassword = await bcrypt.compare(password, user.password);
 
         if(!isCorrectPassword) {
 
@@ -103,8 +104,8 @@ exports.login = async (req,res) => {
 
         }
 
-        const token = jwt.generateToken(User);
-        return res.status(200).json({ token, userId: User.id });
+        const token = jwt.generateToken(user);
+        return res.status(200).json({ token, userId: user.id, isAdmin: user.admin });
 
 
     } catch (error) {
@@ -121,7 +122,7 @@ exports.getPostsLiked = async (req, res) => {
     //Qui ?
     const userId = req.body.userId; //Par exemple (ou via param, ou via token)
 
-    const user = await db.User.findOne({
+    const user = await db.user.findOne({
         where: { id: userId },
         include: [db.Like],
         include: [{ model: db.like, include: [db.Post] }],

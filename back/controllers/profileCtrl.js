@@ -70,9 +70,9 @@ exports.postImage = async (req, res) => {
                 if(error) {
     
                     return res.status(404).json({ message: "L'image n'a pas été changée" });
-    
-                }
                     
+                }
+
             });
         }
 
@@ -135,8 +135,6 @@ exports.modifyBiography = async (req, res) => {
         return res.status(201).json({ message: "La biographie de l'utilisateur a bien été envoyé !" });
 
     }
-
-
 
     catch(error) {
 

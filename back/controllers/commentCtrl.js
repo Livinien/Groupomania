@@ -11,7 +11,7 @@ exports.createComment = async (req, res) => {
 
         const PostId = req.body.PostId
         const content = req.body.content;
-        const UserId = await jwt.getUserId(req);
+        const userId = await jwt.getUserId(req);
 
         if(!content) {
 
@@ -22,7 +22,7 @@ exports.createComment = async (req, res) => {
         let Comment = await db.Comment.create({
 
             content,
-            UserId,
+            userId,
             PostId,
             
 
@@ -55,7 +55,7 @@ exports.getAllComment = async (req, res) => {
             where : { 
                 PostId: PostId },
                 include: [{ 
-                    model: db.User, 
+                    model: db.user, 
                     attributes: ['firstname'] }],
                 order: [["createdAt", "DESC"]]
             
@@ -85,7 +85,7 @@ exports.modifyComment = async (req, res) => {
 
     try {
 
-        const UserId = await jwt.getUserId(req);
+        const userId = await jwt.getUserId(req);
         const modifyComment = req.params.id;
         
         if(!req.body) {
@@ -99,7 +99,7 @@ exports.modifyComment = async (req, res) => {
 
                 where: { 
                     id: modifyComment, 
-                    UserId: UserId 
+                    userId: userId 
                 },
     
             })
@@ -144,7 +144,7 @@ exports.modifyComment = async (req, res) => {
 exports.deleteComment = async (req, res) => {
 
     try {
-        const UserId = await jwt.getUserId(req);
+        const userId = await jwt.getUserId(req);
         const deleteComment = req.params.id;
 
         if(!req.body) {
@@ -158,7 +158,7 @@ exports.deleteComment = async (req, res) => {
 
             where: { 
                 id: deleteComment, 
-                UserId: UserId 
+                userId: userId 
             },
 
         })
