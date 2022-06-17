@@ -2,7 +2,7 @@
 
 module.exports = (sequelize, DataType) => {
 
-    const user = sequelize.define("User",  {
+    const user = sequelize.define("user",  {
 
         firstname: {
             type: DataType.STRING,
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataType) => {
             unique: true,
         },
 
-        
+
         lastname: {
             type: DataType.STRING,
             allowNull: false,
@@ -47,10 +47,15 @@ module.exports = (sequelize, DataType) => {
 
         
         imageUrl: {
-
             type: DataType.STRING,
             allowNull: false,
         },
+
+        admin: {
+            type: DataType.BOOLEAN,
+            allowNull: false,
+        },
+
 
        
     });

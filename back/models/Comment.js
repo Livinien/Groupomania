@@ -13,7 +13,7 @@ module.exports = (sequelize, DataType) => {
 
     Comment.associate = (models) => {
 
-        Comment.belongsTo(models.User);
+        Comment.belongsTo(models.user);
         Comment.belongsTo(models.Post);
 
     };
