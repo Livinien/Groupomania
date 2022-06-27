@@ -55,14 +55,14 @@ exports.modifyPost = async (req, res) => {
         const userId = await jwt.getUserId(req);
         
         const post = await db.Post.findByPk(req.params.id);
-        const user = await db.user.findByPk(userId);
+        const user = await db.User.findByPk(userId);
         
         if(post === null) {
             return res.status(404).json({ error: "article introuvable"});
         }
 
 
-        if(post.userId != userId && !user.admin) {
+        if(post.UserId != userId && !user.admin) {
             return res.status(403).json({ error: "Vous n'êtes pas authorisé à modifier/supprimer tous les posts" });
         }
         
@@ -105,12 +105,11 @@ exports.deletePost = async (req, res) => {
         const post = await db.Post.findByPk(req.params.id);
         const userIdDeletePost = await jwt.getUserId(req);
         
-        if(post.userId != userIdDeletePost) {
+        if(post.UserId != userIdDeletePost) {
             return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
         }
 
         fs.unlink(`img_posts/${post.imageUrl}`, async (error) => {
-            console.log(error);
 
             await post.destroy();
 
@@ -137,7 +136,7 @@ exports.likePost = async (req, res) => {
     let like = await db.Like.findOne({
         where: {
             PostId, // quoi
-            userId, // qui
+            UserId : userId, // qui
         },
     });
     // Si oui
@@ -151,7 +150,7 @@ exports.likePost = async (req, res) => {
     // Je le crée
     like = await db.Like.create({
         PostId, // quoi
-        userId, // qui
+        UserId : userId, // qui
     });
     // Et je stop la requête
     return res.status(201).json(true);

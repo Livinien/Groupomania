@@ -55,7 +55,7 @@ exports.getAllComment = async (req, res) => {
             where : { 
                 PostId: PostId },
                 include: [{ 
-                    model: db.user, 
+                    model: db.User, 
                     attributes: ['firstname'] }],
                 order: [["createdAt", "DESC"]]
             
@@ -99,7 +99,7 @@ exports.modifyComment = async (req, res) => {
 
                 where: { 
                     id: modifyComment, 
-                    userId: userId 
+                    UserId: userId 
                 },
     
             })

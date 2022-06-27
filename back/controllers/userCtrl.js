@@ -19,7 +19,7 @@ exports.signup = async (req, res) => {
         const pseudo = ''
         const description = ''
         let password = req.body.password;
-        let user = await db.user.findOne({ where: {
+        let user = await db.User.findOne({ where: {
 
             firstname,
             lastname,
@@ -42,7 +42,7 @@ exports.signup = async (req, res) => {
 
         password = await bcrypt.hash(password, 5);
 
-        user = await db.user.create({
+        user = await db.User.create({
 
             firstname,
             lastname,
@@ -80,7 +80,7 @@ exports.login = async (req,res) => {
 
         const email = req.body.email;
         const password = req.body.password;
-        let user = await db.user.findOne({
+        let user = await db.User.findOne({
 
             where:{
 
@@ -122,7 +122,7 @@ exports.getPostsLiked = async (req, res) => {
     //Qui ?
     const userId = req.body.userId; //Par exemple (ou via param, ou via token)
 
-    const user = await db.user.findOne({
+    const user = await db.User.findOne({
         where: { id: userId },
         include: [db.Like],
         include: [{ model: db.like, include: [db.Post] }],
