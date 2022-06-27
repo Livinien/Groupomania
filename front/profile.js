@@ -15,7 +15,6 @@ async function profile_img() {
         document.querySelector("#pseudo").value = avatar.pseudo;
         document.querySelector("#description").value = avatar.description;
 
-        console.log(avatar);
     }
 
     

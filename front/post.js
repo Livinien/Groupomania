@@ -17,8 +17,8 @@ form.addEventListener("submit", (e) => {
 
     const postToSend = { title, content };
     
-    const post = sendPost(postToSend, image);
-    console.log(post);
+    sendPost(postToSend, image);
+    
 
     return false;
 });
@@ -33,8 +33,7 @@ const createComment = (comment) => {
     const com = document.createElement('div');
     
     const author = document.createElement('strong');
-    author.textContent = comment.user.firstname;
-
+    author.textContent = comment.User.firstname;
     com.appendChild(author);
 
 
@@ -85,7 +84,7 @@ const createPost = (post) => {
     const isAdmin = JSON.parse(localStorage.getItem("isAdmin"));
 
     
-    if(userId == post.userId || isAdmin) {
+    if(userId == post.UserId || isAdmin) {
 
 
         // SUPPRIMER ET MODIFIER LE POST //
@@ -259,8 +258,8 @@ const createPost = (post) => {
 
             const modifierPost = { title, content };
             
-            const postModify = sendModifyPost(modifierPost, post.id, image);
-            console.log(postModify);
+            sendModifyPost(modifierPost, post.id, image);
+            
 
             return false
             
@@ -394,7 +393,7 @@ const createPost = (post) => {
 
 
     sendLikedPost(post.id).then(liked => {
-        console.log(liked);
+
         if(liked) {
             likes.style.background = "#2c95ff";
             likes.style.color = "#fff";
@@ -438,7 +437,7 @@ const createPost = (post) => {
 
 
     const displayAllComments = (comments) => {
-        console.log(comments);
+        
         comments.forEach((comment) => {
             
             commentsContent.appendChild(createComment(comment));
@@ -507,7 +506,6 @@ const createPost = (post) => {
 
 const displayAllPosts = (posts) => {
     const postsDOM = document.querySelector('#posts');
-    console.log(posts);
         
     posts.forEach((post) => {
         

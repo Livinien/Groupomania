@@ -16,8 +16,6 @@ signupForm.addEventListener("submit", async (e) => {
         password: document.getElementById("password").value, 
         confirmPassword: document.getElementById("confirmPassword").value 
     }
-
-    console.log(user);
     
     let matchPassword = false
     let isValidFirstname = false
@@ -45,18 +43,15 @@ signupForm.addEventListener("submit", async (e) => {
     if(user.firstname) {
 
     if(user.firstname.length === 0) {
-        console.log(user.firstname);
         erreurFirstname.innerHTML = "Prénom manquant"
 
     }
         
     if(user.firstname.length < 3) {
-        console.log(user.firstname);
         erreurFirstname.innerHTML = "Vous devez mettre au moins aux 3 lettres"
 
     } else {
         isValidFirstname = true
-        console.log(isValidFirstname);
     } 
 
 } 
@@ -68,7 +63,6 @@ signupForm.addEventListener("submit", async (e) => {
     erreurLastname.innerHTML = null
 
     if(user.lastname.length === 0) {
-        console.log(user.lastname);
         erreurLastname.innerHTML = "Nom manquant"
     }
 
@@ -76,13 +70,11 @@ signupForm.addEventListener("submit", async (e) => {
 
         
     if(user.lastname.length < 3) {
-        console.log(user.lastname);
         erreurLastname.innerHTML = "Vous devez mettre au moins aux 3 lettres"
 
     } else {
 
         isValidLastname = true
-        console.log(isValidLastname);
 
     }
 
@@ -96,7 +88,6 @@ signupForm.addEventListener("submit", async (e) => {
     erreurEmail.innerHTML = null
 
     if(user.email.length === 0) {
-        console.log(user.email);
         erreurEmail.innerHTML = "Email manquant"
     }
 
@@ -104,13 +95,11 @@ signupForm.addEventListener("submit", async (e) => {
 
         
     if(user.email.length < 3) {
-        console.log(user.email);
         erreurEmail.innerHTML = "Vous devez mettre au moins aux 3 lettres"
 
     } else {
 
         isValidEmail = true
-        console.log(isValidEmail);
 
     }
 
@@ -125,7 +114,6 @@ signupForm.addEventListener("submit", async (e) => {
 
 
     if(user.password.length === 0) {
-        console.log(user.password);
         erreurPassword.innerHTML = "Password manquant"
     }
 
@@ -133,13 +121,11 @@ signupForm.addEventListener("submit", async (e) => {
 
         
     if(user.password.length < 3) {
-        console.log(user.password);
         erreurPassword.innerHTML = "Vous devez mettre au moins aux 3 lettres"
 
     } else {
 
         isValidPassword = true
-        console.log(isValidEmail);
 
     }
 
@@ -152,7 +138,6 @@ signupForm.addEventListener("submit", async (e) => {
     erreurConfirmPassword.innerHTML = null
 
     if(user.confirmPassword === 0) {
-        console.log(user.confirmPassword);
         erreurConfirmPassword.innerHTML = "Password manquant"
     }
 
@@ -160,13 +145,11 @@ signupForm.addEventListener("submit", async (e) => {
 
         
     if(user.confirmPassword.length < 3) {
-        console.log(user.confirmPassword);
         erreurConfirmPassword.innerHTML = "Vous devez mettre au moins aux 3 lettres"
 
     } else {
 
         isValidConfirmPassword = true
-        console.log(isValidConfirmPassword);
 
     }
 
@@ -191,8 +174,6 @@ signupForm.addEventListener("submit", async (e) => {
             alert(json.error)
 
         }
-        
-        console.log(json);
 
     }
 

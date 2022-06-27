@@ -30,7 +30,6 @@ loginForm.addEventListener("submit", async (e) => {
     erreurEmail.innerHTML = null
 
     if(user.email.length === 0) {
-        console.log(user.email);
         erreurEmail.innerHTML = "Email manquant"
     }
 
@@ -38,7 +37,6 @@ loginForm.addEventListener("submit", async (e) => {
 
         
     if(user.email.length < 3) {
-        console.log(user.email);
         erreurEmail.innerHTML = "Vous devez mettre au moins aux 3 lettres"
 
     } else {
@@ -56,7 +54,6 @@ loginForm.addEventListener("submit", async (e) => {
     erreurPassword.innerHTML = null
 
     if(user.password === 0) {
-        console.log(user.password);
         erreurPassword.innerHTML = "Password manquant"
     }
 
@@ -64,7 +61,6 @@ loginForm.addEventListener("submit", async (e) => {
 
         
     if(user.password.length < 3) {
-        console.log(user.password);
         erreurPassword.innerHTML = "Vous devez mettre au moins aux 3 lettres"
 
     } else {
@@ -92,8 +88,6 @@ loginForm.addEventListener("submit", async (e) => {
             alert(json.error)
 
         }
-
-        console.log(json);
 
     } 
     

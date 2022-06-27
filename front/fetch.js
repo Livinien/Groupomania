@@ -58,7 +58,6 @@ async function login(User) {
 
 async function sendPost(post, image) {
 
-    console.log(post, image);
     const formData = new FormData()
     formData.append('post', JSON.stringify(post));
     formData.append('image', image);
@@ -88,7 +87,6 @@ async function sendPost(post, image) {
 
 async function sendModifyPost(post, id, image) {
 
-    console.log(post, image);
     const formData = new FormData()
     formData.append('post', JSON.stringify(post));
     formData.append('image', image);
@@ -376,7 +374,6 @@ async function getProfile() {
 
 async function sendImage(file) {
 
-    console.log(file);
     const formData = new FormData()
     formData.append('image', file);
     
