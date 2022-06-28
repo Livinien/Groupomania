@@ -441,7 +441,7 @@ const createPost = (post) => {
         comments.forEach((comment) => {
             
             commentsContent.appendChild(createComment(comment));
-        
+            
         })
         
     };
@@ -480,8 +480,8 @@ const createPost = (post) => {
             };
             
     
-            const comment = await sendComment(commentToSend);
-            console.log(comment);
+            await sendComment(commentToSend);
+            
             
 
         } else {
