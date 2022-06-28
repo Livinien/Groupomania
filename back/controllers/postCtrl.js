@@ -11,7 +11,7 @@ exports.createPost = async (req, res) => {
     
     const post = JSON.parse(req.body.post);
     post.imageUrl = req.file.filename;
-    post.userId = await jwt.getUserId(req);
+    post.UserId = await jwt.getUserId(req);
 
 
     try {
@@ -170,7 +170,7 @@ exports.likedPost = async (req, res) => {
     let liked = await db.Like.findOne({
         where: {
             PostId, // quoi
-            userId, // qui
+            UserId : userId, // qui
         },
     });
     // Si oui

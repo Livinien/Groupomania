@@ -22,10 +22,9 @@ exports.createComment = async (req, res) => {
         let Comment = await db.Comment.create({
 
             content,
-            userId,
+            UserId : userId,
             PostId,
             
-
         });
 
         return res.status(201).json({ message: "Commentaire Ajouté !", Comment});
@@ -37,8 +36,6 @@ exports.createComment = async (req, res) => {
     }
 
 }
-
-
 
 
 
@@ -158,7 +155,7 @@ exports.deleteComment = async (req, res) => {
 
             where: { 
                 id: deleteComment, 
-                userId: userId 
+                UserId: userId 
             },
 
         })
