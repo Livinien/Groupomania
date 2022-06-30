@@ -13,6 +13,10 @@
 
 @media(max-width: 995px) {
 
+    .container img {
+        margin: auto;
+    }
+
     .container h2 {
         margin: -110px 0 0 0;
         font-size: 20px;
@@ -74,7 +78,7 @@
     }
 
     .container h2 {
-        margin: -60px 0 0 5px;
+        margin: -60px 0 0 10px;
         font-size: 15px;
     }
 
@@ -88,6 +92,8 @@
         font-size: 20px;
     }
 }
+
+
 
 
 
@@ -145,6 +151,7 @@
 
 
 
+
 /* PAGE DE CONNEXION */
 
 
@@ -193,7 +200,11 @@
 
 
 
+
+
+
 /* PAGE DE PROFILE */
+
 
 @media(max-width: 480px) {
 
@@ -325,3 +336,156 @@
     }
 
 }
+
+
+
+
+/* PAGE DES POSTS */
+
+
+@media(max-width: 580px) {
+
+    /* Formulaire pour créer un post */
+
+    #myForm {
+        width: 450px;
+    }
+
+    .titre {
+        margin: 20px 0 0 60px;
+    }
+
+    .fileImg {
+        margin: 20px 0 0 -20px;
+    }
+
+    .bouton {
+        margin: 40px 150px 30px ;
+    }
+
+}
+
+
+
+@media(max-width: 500px) {
+
+    #myForm {
+        width: 380px;
+    }
+
+    .titre {
+        margin: 20px 0 0 60px;
+    }
+
+    .fileImg {
+        margin: 20px 0 0 60px;
+        font-size: 15px;
+        padding: 0;
+    }
+
+    .bouton {
+        margin: 40px 120px 30px ;
+    }
+
+}
+
+
+
+@media(max-width: 430px) {
+
+    #myForm {
+        width: 320px;
+    }
+
+    .titre {
+        margin: 20px 0 0 50px;
+    }
+
+    .fileImg {
+        margin: 20px 0 0 50px;
+        font-size: 13px;
+        padding: 0;
+    }
+
+    .bouton {
+        margin: 40px 90px 30px ;
+    }
+
+}
+
+
+
+@media(max-width: 430px) {
+
+    #myForm {
+        width: 290px;
+    }
+
+    .titre {
+        margin: 20px 0 0 45px;
+    }
+
+    .fileImg {
+        margin: 20px 0 0 45px;
+        font-size: 12px;
+        padding: 0;
+    }
+
+    .bouton {
+        margin: 40px 80px 30px ;
+    }
+
+}
+
+
+
+@media(max-width: 580px) {
+
+    /* La liste des posts */
+
+    .post {
+        width: 450px;
+    }
+
+    .likes {
+        margin: 40px 165px 30px ;
+    }
+}
+
+
+@media(max-width: 500px) {
+
+    .post {
+        width: 380px;
+    }
+
+    .points {
+        margin: 0 -10px 30px;
+    }
+
+    .likes {
+        margin: 40px 130px 30px;
+    }
+}
+
+
+@media(max-width: 430px) {
+
+    .post {
+        width: 290px;
+    }
+
+    .points {
+        margin: 0 -20px 30px;
+    }
+
+    img {
+        width: 280px;
+        margin: 40px -15px 30px;
+    }
+
+    .likes {
+        margin: 40px 85px 30px;
+    }
+}
+
