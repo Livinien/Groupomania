@@ -1,0 +1,327 @@
+ 
+/* PAGE D'ACCUEIL */
+
+
+@media(max-width: 1200px) {
+
+    .container h2 {
+        margin: -150px 0 0 0;
+    }
+
+}
+
+
+@media(max-width: 995px) {
+
+    .container h2 {
+        margin: -110px 0 0 0;
+        font-size: 20px;
+    }
+
+}
+
+
+@media(max-width: 770px) {
+
+    .container h2 {
+        margin: -80px 0 0 0;
+        font-size: 15px;
+    }
+
+}
+
+
+
+@media(max-width: 610px) {
+
+    nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        padding: 10px 0 0 0;      
+    }
+
+    h1 a {
+        display: none;
+    }
+}
+
+
+
+@media(max-width: 575px) {
+
+    img {
+        width: 300px;
+    }
+
+    .container h2 {
+        margin: -60px 0 0 10px;
+        font-size: 15px;
+    }
+
+}
+
+
+
+@media(max-width: 325px) {
+
+    img {
+        width: 290px;
+    }
+
+    .container h2 {
+        margin: -60px 0 0 5px;
+        font-size: 15px;
+    }
+
+}
+
+
+
+@media(max-width: 325px) {
+
+    h2 {
+        font-size: 20px;
+    }
+}
+
+
+
+
+
+
+/* PAGE D'INSCRIPTION */
+
+
+@media(max-width: 610px) {
+
+    nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        padding: 10px 0 0 0;      
+    }
+
+    h1 a {
+        display: none;
+    }
+}
+
+
+
+@media(max-width: 550px) {
+
+    #signupForm {
+        width: 420px;
+    }
+}
+
+
+@media(max-width: 470px) {
+
+    #signupForm {
+        width: 360px;
+    }
+}
+
+
+@media(max-width: 400px) {
+
+    #signupForm {
+        width: 280px;
+    }
+}
+
+
+
+
+
+
+/* PAGE DE CONNEXION */
+
+
+@media(max-width: 610px) {
+
+    nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    nav ul {
+        display: flex;
+        align-items: center;
+        padding: 10px 0 0 0;      
+    }
+
+    h1 a {
+        display: none;
+    }
+}
+
+
+
+@media(max-width: 550px) {
+
+    #loginForm {
+        width: 420px;
+    }
+}
+
+
+@media(max-width: 470px) {
+
+    #loginForm {
+        width: 360px;
+    }
+}
+
+
+@media(max-width: 400px) {
+
+    #loginForm {
+        width: 280px;
+    }
+}
+
+
+
+/* PAGE DE PROFILE */
+
+@media(max-width: 480px) {
+
+    .card_profile {
+        width: 360px;
+    }
+
+    .card_image {
+        margin: 0 0 0 80px;
+    }
+
+    .card_profile .card_name {
+        margin: 30px 0 0 2px;
+    }
+
+    .card_profile .btn_green {
+        margin: 0 0 0 80px;
+    }
+
+    .card_profile .btn_red {
+        margin: 70px 0 0 65px;
+    }
+
+}
+
+
+@media(max-width: 420px) {
+
+    .card_profile {
+        width: 300px;
+    }
+
+    .card_image {
+        margin: 0 0 0 50px;
+    }
+
+    .upload_img {
+        margin: 20px 0 0 -10px;
+    }
+
+    .card_profile .card_name {
+        margin: 30px 0 0 -10px;
+    }
+
+    .card_about {
+        margin: 30px 0 0 28px;
+    }
+
+    .card_profile .btn_green {
+        margin: 50px 0 0 50px;
+    }
+
+    .card_profile .btn_red {
+        margin: 70px 0 0 35px;
+    }
+
+}
+
+
+
+@media(max-width: 400px) {
+
+    .card_profile {
+        width: 250px;
+    }
+
+    .card_image {
+        margin: 0 0 0 25px;
+    }
+
+    .upload_img {
+        margin: 20px 0 0 -10px;
+        font-size: 13px;
+    }
+
+    .card_profile .card_name {
+        margin: 30px 0 0 -5px;
+    }
+
+    .card_about {
+        margin: 30px 0 0 25px;
+    }
+
+    .card_profile .btn_green {
+        margin: 50px 0 0 25px;
+    }
+
+    .card_profile .btn_red {
+        margin: 70px 0 0 10px;
+    }
+
+}
+
+
+
+@media(max-width: 330px) {
+
+    .card_profile {
+        width: 200px;
+    }
+
+    .card_profile .card_image {
+        margin: 0 0 0 25px;
+        width: 150px;
+        height: 150px;
+    }
+
+    .upload_img {
+        margin: 20px 0 0 -10px;
+        font-size: 10px;
+    }
+
+    .card_profile .card_name {
+        margin: 30px 0 0 0px;
+    }
+
+    .card_about {
+        margin: 30px 0 0 20px;
+    }
+
+    .card_profile .btn_green {
+        margin: 50px 0 0 15px;
+        font-size: 12px;
+    }
+
+    .card_profile .btn_red {
+        margin: 70px 0 0 10px;
+        font-size: 11px;
+    }
+
+}
