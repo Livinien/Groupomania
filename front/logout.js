@@ -10,7 +10,7 @@ logout.addEventListener("click", async (e) => {
     e.preventDefault()
 
     
-    localStorage.clear("token");
+    localStorage.clear();
 
     window.location.href = "index.html";
 

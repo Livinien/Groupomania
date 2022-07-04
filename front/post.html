@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="/images/favicon.png"/>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media.css">
 
     <title>Groupomania | Post</title>
 
@@ -35,7 +36,7 @@
 
 
   <form id="myForm">
-
+  
     <label for="content" class="contenu">Titre de votre Post</label>
     <input id="title" class="titre" type="text">
     <textarea name="" id="content" class="titre" cols="30" rows="10"></textarea>
@@ -44,13 +45,19 @@
     <button class="bouton" type="submit">Publier</button>
   
   </form>
+  
+
 
 
   <br><br>
 
 
-  
-  <div id="posts"></div>
+  <div class="position-posts">
+    
+    <div id="posts"></div>
+
+  </div>
+   
 
 
   <script src="logout.js"></script>

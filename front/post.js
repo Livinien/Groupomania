@@ -82,7 +82,7 @@ const createPost = (post) => {
     
     const userId = localStorage.getItem("userId");
     const isAdmin = JSON.parse(localStorage.getItem("isAdmin"));
-
+    console.log(isAdmin);
     
     if(userId == post.UserId || isAdmin) {
 
