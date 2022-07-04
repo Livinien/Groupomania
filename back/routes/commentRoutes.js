@@ -7,10 +7,7 @@ const multer = require('../middleware/multer-config');
 
 
 router.post("/", auth, multer, commentCtrl.createComment);
-router.put("/:id", auth, commentCtrl.modifyComment);
-router.delete("/:id", auth, commentCtrl.deleteComment);
 router.get("/:id", auth, commentCtrl.getAllComment);
-
 
 
 module.exports = router;
