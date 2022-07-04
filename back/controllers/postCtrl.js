@@ -65,6 +65,8 @@ exports.modifyPost = async (req, res) => {
         if(post.UserId != userId && !user.admin) {
             return res.status(403).json({ error: "Vous n'êtes pas authorisé à modifier/supprimer tous les posts" });
         }
+
+
         
         
         
@@ -105,8 +107,14 @@ exports.deletePost = async (req, res) => {
         const post = await db.Post.findByPk(req.params.id);
         const userIdDeletePost = await jwt.getUserId(req);
         
-        if(post.UserId != userIdDeletePost) {
-            return res.status(403).json({ error: "Vous n'avez pas l'authorisation ou le post n'existe pas" });
+       const user = await db.User.findByPk(userIdDeletePost);
+        
+        if(post === null) {
+            return res.status(404).json({ error: "article introuvable"});
+        }
+
+        if(post.UserId != userIdDeletePost && !user.admin) {
+            return res.status(403).json({ error: "Vous n'êtes pas authorisé à modifier/supprimer tous les posts" });
         }
 
         fs.unlink(`img_posts/${post.imageUrl}`, async (error) => {
