@@ -489,3 +489,185 @@
     }
 }
 
+
+
+
+/* Posts | Partie JavaScript - responsive */
+
+
+/* Overlay de la modification du post */
+
+@media(max-width: 580px) {
+
+    .postModify {
+        margin: 30px 50px;
+    }
+
+    .titleModify {
+        margin: 30px 25px;
+    }
+
+    .texteareaModify {
+        right: 25px;
+    }
+
+    .fileModify {
+        right: 100px;
+    }
+
+    .check {
+        top: 450px;
+        right: 40px;
+    }
+
+}
+
+
+
+@media(max-width: 500px) {
+
+    .postModify {
+        margin: 35px 80px;
+        font-size: 15px;
+    }
+
+    .cross {
+        margin: 35px 20px;
+        font-size: 20px;
+    }
+
+    .titleModify {
+        margin: 30px 15px;
+    }
+
+    .texteareaModify {
+        right: 20px;
+    }
+
+    .fileModify {
+        right: 60px;
+        font-size: 15px;
+    }
+
+    .check {
+        top: 450px;
+        right: 35px;
+    }
+
+}
+
+
+@media(max-width: 430px) {
+
+    .postModify {
+        margin: 35px 20px;
+        font-size: 15px;
+    }
+
+    .cross {
+        margin: 35px 20px;
+        font-size: 15px;
+    }
+
+    .titleModify {
+        margin: 30px 5px;
+    }
+
+    .texteareaModify {
+        right: 15px;
+    }
+
+    .fileModify {
+        right: 35px;
+        font-size: 12px;
+    }
+
+    .check {
+        top: 450px;
+        right: 40px;
+    }
+
+}
+
+
+/* Overlay de la suppression du post */
+
+@media(max-width: 580px) {
+
+    .messageDelete {
+        right: 11px;
+    }
+
+    .post button {
+        margin: 30px 120px;
+    }
+
+}
+
+
+@media(max-width: 500px) {
+
+    .messageDelete {
+        right: 10px;
+    }
+
+    .post button {
+        margin: 30px 90px;
+    }
+
+    .post button {
+        margin: 30px 90px;
+        font-size: 15px;
+    }
+
+    .post button:nth-child(3) {
+        margin: 30px 99px;
+        font-size: 15px;
+    }
+
+
+}
+
+
+@media(max-width: 430px) {
+
+    .messageDelete {
+        right: 7px;
+    }
+
+    .titleSuppression {
+        font-size: 15px;
+    }
+
+    .post button {
+        margin: 30px 45px;
+        font-size: 15px;
+    }
+
+    .post button:nth-child(3) {
+        margin: 30px 54px;
+        font-size: 15px;
+    }
+
+}
+
+
+
+/* Bouton Modifier/Supprimer */
+
+@media(max-width: 430px) {
+
+    
+
+    .modifyPost {
+        top: 55px;
+        right: 13px;
+        font-size: 13px;
+    }
+
+    .deletePost {
+        top: 85px;
+        right: 13px;
+        font-size: 14px;
+    }
+}
