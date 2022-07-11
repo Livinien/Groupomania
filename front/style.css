@@ -558,7 +558,7 @@ strong:nth-child(2) {
 
 .card_profile .btn_green {
     display: flex;
-    margin: 20px 70px 20px 90px ;
+    margin: 20px 70px 20px 98px ;
     border: none;
     padding: 9px 32px;
     background-color: #06ac00;
@@ -601,12 +601,15 @@ strong:nth-child(2) {
     cursor: auto;
 }
 
+#deleteAccount, .messageDeleteProfile {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+}
 
 .messageDeleteProfile {
     position: absolute;
-    top: 600px;
-    right: 12px;
-    width: 95%;
+    top: 500px;
     font-weight: bold;
     font-size: 20px;
     padding: 20px;
@@ -614,7 +617,7 @@ strong:nth-child(2) {
     background: #fff;
     border-radius: 5px;
     z-index: 1000;
-    cursor: auto;
+    cursor: pointer;
 }
 
 

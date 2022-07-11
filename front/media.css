@@ -221,7 +221,7 @@
     }
 
     .card_profile .btn_green {
-        margin: 0 0 0 80px;
+        margin: 0 0 0 79px;
     }
 
     .card_profile .btn_red {
@@ -254,7 +254,7 @@
     }
 
     .card_profile .btn_green {
-        margin: 50px 0 0 50px;
+        margin: 50px 0 0 48px;
     }
 
     .card_profile .btn_red {
@@ -289,7 +289,7 @@
     }
 
     .card_profile .btn_green {
-        margin: 50px 0 0 25px;
+        margin: 50px 0 0 23px;
     }
 
     .card_profile .btn_red {
@@ -336,6 +336,66 @@
     }
 
 }
+
+
+/* Profile | Partie JavaScript - responsive */
+
+
+/* Overlay de la suppression du profile */
+
+@media(max-width: 610px) {
+
+    .doorDelete {
+        top: 137px;
+    }
+}
+
+@media(max-width: 520px) {
+
+    #deleteAccount, .messageDeleteProfile {
+        margin: 30px auto;
+    }
+
+    .messageDeleteProfile {
+        margin: 30px auto;
+        width: 90%;
+    }
+
+    .titleDeleteProfile {
+        font-size: 18px;
+    }
+
+    .buttonSuppressionProfile_1, 
+    .buttonSuppressionProfile_2 {
+        display: flex;
+        justify-content: center;
+        margin: 30px auto;
+        font-size: 17px;
+        width: 50%;
+        
+    }
+}
+
+@media(max-width: 360px) {
+
+    .titleDeleteProfile {
+        font-size: 15px;
+    }
+
+    .buttonSuppressionProfile_1, 
+    .buttonSuppressionProfile_2 {
+        display: flex;
+        justify-content: center;
+        margin: 30px auto;
+        font-size: 15px;
+        width: 60%;
+    }
+}
+
+
+
+
+
 
 
 
@@ -391,54 +451,6 @@
 
 
 
-@media(max-width: 430px) {
-
-    #myForm {
-        width: 320px;
-    }
-
-    .titre {
-        margin: 20px 0 0 50px;
-    }
-
-    .fileImg {
-        margin: 20px 0 0 50px;
-        font-size: 13px;
-        padding: 0;
-    }
-
-    .bouton {
-        margin: 40px 90px 30px ;
-    }
-
-}
-
-
-
-@media(max-width: 430px) {
-
-    #myForm {
-        width: 290px;
-    }
-
-    .titre {
-        margin: 20px 0 0 45px;
-    }
-
-    .fileImg {
-        margin: 20px 0 0 45px;
-        font-size: 12px;
-        padding: 0;
-    }
-
-    .bouton {
-        margin: 40px 80px 30px ;
-    }
-
-}
-
-
-
 @media(max-width: 580px) {
 
     /* La liste des posts */
@@ -466,6 +478,29 @@
     .likes {
         margin: 40px 130px 30px;
     }
+}
+
+
+@media(max-width: 430px) {
+
+    #myForm {
+        width: 290px;
+    }
+
+    .titre {
+        margin: 20px 0 0 40px;
+    }
+
+    .fileImg {
+        margin: 20px 0 0 30px;
+        font-size: 13px;
+        padding: 0;
+    }
+
+    .bouton {
+        margin: 40px 90px 30px 75px ;
+    }
+
 }
 
 
@@ -621,8 +656,9 @@
     }
 
     .post button:nth-child(3) {
-        margin: 30px 99px;
+        margin: 30px 90px;
         font-size: 15px;
+        width: 47%;
     }
 
 
@@ -645,8 +681,9 @@
     }
 
     .post button:nth-child(3) {
-        margin: 30px 54px;
+        margin: 30px 45px;
         font-size: 15px;
+        width: 64%;
     }
 
 }
@@ -656,8 +693,6 @@
 /* Bouton Modifier/Supprimer */
 
 @media(max-width: 430px) {
-
-    
 
     .modifyPost {
         top: 55px;
